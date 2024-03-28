@@ -5,6 +5,9 @@ buildscript {
   repositories {
     google()
     mavenCentral()
+    maven {
+            url "https://flyreelsdk.jfrog.io/artifactory/flyreel-androidsdk"
+        }
   }
 
   dependencies {
@@ -37,6 +40,10 @@ def getExtOrIntegerDefault(name) {
 }
 
 android {
+  if (project.android.hasProperty("namespace")) {
+        namespace 'com.lexisnexis.risk.flyreel_sdk_react_native'
+  }
+
   compileSdkVersion getExtOrIntegerDefault("compileSdkVersion")
 
   defaultConfig {
@@ -64,6 +71,9 @@ android {
 repositories {
   mavenCentral()
   google()
+  maven {
+          url "https://flyreelsdk.jfrog.io/artifactory/flyreel-androidsdk"
+      }
 }
 
 def kotlin_version = getExtOrDefault("kotlinVersion")
@@ -74,6 +84,8 @@ dependencies {
   //noinspection GradleDynamicVersion
   implementation "com.facebook.react:react-native:+"
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+  implementation 'lexisnexis.flyreel:android-sdk:1.0.0'
+
 }
 
 if (isNewArchitectureEnabled()) {

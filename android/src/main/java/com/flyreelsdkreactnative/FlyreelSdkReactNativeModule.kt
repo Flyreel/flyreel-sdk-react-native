@@ -1,11 +1,16 @@
 package com.flyreelsdkreactnative
 
+import android.app.Application
 import android.content.Context
+import android.net.Uri
 import android.telecom.Call
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.ReactContextBaseJavaModule
 import com.facebook.react.bridge.ReactMethod
 import com.facebook.react.bridge.Promise
+import com.lexisnexis.risk.flyreel.Flyreel
+import com.lexisnexis.risk.flyreel.FlyreelConfiguration
+import com.lexisnexis.risk.flyreel.FlyreelEnvironment
 
 class FlyreelSdkReactNativeModule(reactContext: ReactApplicationContext) :
   ReactContextBaseJavaModule(reactContext) {
@@ -17,6 +22,13 @@ class FlyreelSdkReactNativeModule(reactContext: ReactApplicationContext) :
     return NAME
   }
 
+  private fun mapEnvironment(environment: String) =
+    when (environment) {
+      "production" -> FlyreelEnvironment.Production
+      "sandbox" -> FlyreelEnvironment.Sandbox
+      else -> throw Exception("Wrong Flyreel environment")
+    }
+
   // Example method
   // See https://reactnative.dev/docs/native-modules-android
   @ReactMethod
@@ -25,17 +37,11 @@ class FlyreelSdkReactNativeModule(reactContext: ReactApplicationContext) :
   }
 
 
-  // I don't know what paramaters to import here
   @ReactMethod
-  fun startSdk(startType: String, call: Call, method: ReactMethod, promise: Promise) {
+  fun startSdk(startType: String,zipCode: String, accessCode: String, organizationId: String, settingsVersion: Int, environment: String, deeplinkUrl: String, shouldSkipLoginPage: Boolean, promise: Promise) {
 
     when (startType) {
       "initialize" -> {
-        val arguments = call.arguments as Map<*, *>
-        val organizationId = arguments["organizationId"] as String
-        val settingsVersion = arguments["settingsVersion"] as Int
-        val environment = arguments["environment"] as String
-
         Flyreel.initialize(
           context as Application, FlyreelConfiguration(
             organizationId = organizationId,
@@ -43,28 +49,22 @@ class FlyreelSdkReactNativeModule(reactContext: ReactApplicationContext) :
             environment = mapEnvironment(environment)
           )
         )
-        result.success(null)
+        promise.resolve(null)
       }
 
       "open" -> {
-        val arguments = call.arguments as Map<*, *>
-        val deeplinkUrl = arguments["deeplinkUrl"] as? String
-        val shouldSkipLoginPage = arguments["shouldSkipLoginPage"] as Boolean
         (currentActivity as? Context)?.let {
           Flyreel.openFlyreel(
             context = it,
             deeplinkUri = deeplinkUrl?.let { url -> Uri.parse(url) },
             shouldSkipLoginPage = shouldSkipLoginPage
           )
-          result.success(null)
-        } ?: result.notImplemented()
+          promise.resolve(null)
+        } ?: promise.reject("")
       }
 
       "openWithCredentials" -> {
-        val arguments = call.arguments as Map<*, *>
-        val zipCode = arguments["zipCode"] as String
-        val accessCode = arguments["accessCode"] as String
-        val shouldSkipLoginPage = arguments["shouldSkipLoginPage"] as Boolean
+
         (currentActivity as? Context)?.let {
           Flyreel.openFlyreel(
             context = it,
@@ -72,19 +72,18 @@ class FlyreelSdkReactNativeModule(reactContext: ReactApplicationContext) :
             accessCode = accessCode,
             shouldSkipLoginPage = shouldSkipLoginPage
           )
-          result.success(null)
-        } ?: result.notImplemented()
+          promise.resolve(null)
+        } ?: promise.reject("")
       }
 
       "enableLogs" -> {
         Flyreel.enableLogs()
-        result.success(null)
+        promise.resolve(null)
       }
 
-      else -> result.notImplemented()
+      else -> promise.reject("")
     }
-    promise.resolve(result)  }
-
+  }
   companion object {
     const val NAME = "FlyreelSdkReactNative"
   }

@@ -1925,11 +1925,11 @@ __metadata:
   linkType: hard
 
 "@evilmartians/lefthook@npm:^1.5.0":
-  version: 1.6.7
-  resolution: "@evilmartians/lefthook@npm:1.6.7"
+  version: 1.6.8
+  resolution: "@evilmartians/lefthook@npm:1.6.8"
   bin:
     lefthook: bin/index.js
-  checksum: 43e422d092d54958060e64519c1dc354f58cfc788066cb746d1ad9bcb8970099912737b5a53edcaa703a724e01de72ad0b3ce9742fc2cd76d492f61639ad2318
+  checksum: c740821f680316f00ce4521d4cd8fe4c4ed53b92efa587d4bbf87b50580797a64a9116d4e1b1958014ad628a2669a074add8d65e36fcb16f4b60f755372ce97a
   conditions: (os=darwin | os=linux | os=win32) & (cpu=x64 | cpu=arm64 | cpu=ia32)
   languageName: node
   linkType: hard
@@ -1969,9 +1969,9 @@ __metadata:
   linkType: hard
 
 "@humanwhocodes/object-schema@npm:^2.0.2":
-  version: 2.0.2
-  resolution: "@humanwhocodes/object-schema@npm:2.0.2"
-  checksum: 2fc11503361b5fb4f14714c700c02a3f4c7c93e9acd6b87a29f62c522d90470f364d6161b03d1cc618b979f2ae02aed1106fd29d302695d8927e2fc8165ba8ee
+  version: 2.0.3
+  resolution: "@humanwhocodes/object-schema@npm:2.0.3"
+  checksum: d3b78f6c5831888c6ecc899df0d03bcc25d46f3ad26a11d7ea52944dc36a35ef543fad965322174238d677a43d5c694434f6607532cff7077062513ad7022631
   languageName: node
   linkType: hard
 
@@ -2381,15 +2381,15 @@ __metadata:
   linkType: hard
 
 "@npmcli/agent@npm:^2.0.0":
-  version: 2.2.1
-  resolution: "@npmcli/agent@npm:2.2.1"
+  version: 2.2.2
+  resolution: "@npmcli/agent@npm:2.2.2"
   dependencies:
     agent-base: ^7.1.0
     http-proxy-agent: ^7.0.0
     https-proxy-agent: ^7.0.1
     lru-cache: ^10.0.1
-    socks-proxy-agent: ^8.0.1
-  checksum: c69aca42dbba393f517bc5777ee872d38dc98ea0e5e93c1f6d62b82b8fecdc177a57ea045f07dda1a770c592384b2dd92a5e79e21e2a7cf51c9159466a8f9c9b
+    socks-proxy-agent: ^8.0.3
+  checksum: 67de7b88cc627a79743c88bab35e023e23daf13831a8aa4e15f998b92f5507b644d8ffc3788afc8e64423c612e0785a6a92b74782ce368f49a6746084b50d874
   languageName: node
   linkType: hard
 
@@ -4316,9 +4316,9 @@ __metadata:
   linkType: hard
 
 "caniuse-lite@npm:^1.0.30001587":
-  version: 1.0.30001600
-  resolution: "caniuse-lite@npm:1.0.30001600"
-  checksum: 1aae03be0e9f96163e88b9305531ef8db0e01f224aff545c61a32ce0b0ca323e22531bf680bacac3e34f98e23f71ac31a21b328fa0fcbbecea65a2c2638c70c4
+  version: 1.0.30001605
+  resolution: "caniuse-lite@npm:1.0.30001605"
+  checksum: 8af1ae364c4f4c0796e7fd1aa195dfae2d9c3011c61f0907030201e4fc31a12e81407a13cca621a3b7f6a1eb0217ee9c681fb15670074c204a54edfab798d5c9
   languageName: node
   linkType: hard
 
@@ -5488,9 +5488,9 @@ __metadata:
   linkType: hard
 
 "electron-to-chromium@npm:^1.4.668":
-  version: 1.4.722
-  resolution: "electron-to-chromium@npm:1.4.722"
-  checksum: 613c8d015246857028e6ee6adf14fe8fcf8f03c99a77ddae40df12d62a9164421276acc0ed34e59a4fbe1e3fdb2c197bd534066f6a8e4d7d86eb19f9c361cb57
+  version: 1.4.723
+  resolution: "electron-to-chromium@npm:1.4.723"
+  checksum: c87cbc88074d37fb0bd8c8462288b5073eb4f927bc9a310f03a1746b24aef1da09244073fc2a779b66996c3fb75e3d86d5b5d783edd7b746aa08f38508410dd2
   languageName: node
   linkType: hard
 
@@ -11763,7 +11763,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"socks-proxy-agent@npm:^8.0.1":
+"socks-proxy-agent@npm:^8.0.1, socks-proxy-agent@npm:^8.0.3":
   version: 8.0.3
   resolution: "socks-proxy-agent@npm:8.0.3"
   dependencies:
@@ -12244,8 +12244,8 @@ __metadata:
   linkType: hard
 
 "terser@npm:^5.15.0":
-  version: 5.30.0
-  resolution: "terser@npm:5.30.0"
+  version: 5.30.2
+  resolution: "terser@npm:5.30.2"
   dependencies:
     "@jridgewell/source-map": ^0.3.3
     acorn: ^8.8.2
@@ -12253,7 +12253,7 @@ __metadata:
     source-map-support: ~0.5.20
   bin:
     terser: bin/terser
-  checksum: a5c3b35675ddc96f355e7d27c012c7408f5cb89c6cb47079817414e765ef594900439169f92641500b8f0b7abbbc61bc52c394e1a53dfea87b5ea01ff56eeadd
+  checksum: 80f494aef5566bf44c82aeb8d0576bd4d63b29fa004edacd61f6ae899236103fbaaaf4b9cca3353e04a6581cca99b91d691edcf3fb34cda59b25c5689c347314
   languageName: node
   linkType: hard
 
@@ -12445,58 +12445,58 @@ __metadata:
   languageName: node
   linkType: hard
 
-"turbo-darwin-64@npm:1.13.0":
-  version: 1.13.0
-  resolution: "turbo-darwin-64@npm:1.13.0"
+"turbo-darwin-64@npm:1.13.1":
+  version: 1.13.1
+  resolution: "turbo-darwin-64@npm:1.13.1"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"turbo-darwin-arm64@npm:1.13.0":
-  version: 1.13.0
-  resolution: "turbo-darwin-arm64@npm:1.13.0"
+"turbo-darwin-arm64@npm:1.13.1":
+  version: 1.13.1
+  resolution: "turbo-darwin-arm64@npm:1.13.1"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"turbo-linux-64@npm:1.13.0":
-  version: 1.13.0
-  resolution: "turbo-linux-64@npm:1.13.0"
+"turbo-linux-64@npm:1.13.1":
+  version: 1.13.1
+  resolution: "turbo-linux-64@npm:1.13.1"
   conditions: os=linux & cpu=x64
   languageName: node
   linkType: hard
 
-"turbo-linux-arm64@npm:1.13.0":
-  version: 1.13.0
-  resolution: "turbo-linux-arm64@npm:1.13.0"
+"turbo-linux-arm64@npm:1.13.1":
+  version: 1.13.1
+  resolution: "turbo-linux-arm64@npm:1.13.1"
   conditions: os=linux & cpu=arm64
   languageName: node
   linkType: hard
 
-"turbo-windows-64@npm:1.13.0":
-  version: 1.13.0
-  resolution: "turbo-windows-64@npm:1.13.0"
+"turbo-windows-64@npm:1.13.1":
+  version: 1.13.1
+  resolution: "turbo-windows-64@npm:1.13.1"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
 
-"turbo-windows-arm64@npm:1.13.0":
-  version: 1.13.0
-  resolution: "turbo-windows-arm64@npm:1.13.0"
+"turbo-windows-arm64@npm:1.13.1":
+  version: 1.13.1
+  resolution: "turbo-windows-arm64@npm:1.13.1"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
 "turbo@npm:^1.10.7":
-  version: 1.13.0
-  resolution: "turbo@npm:1.13.0"
+  version: 1.13.1
+  resolution: "turbo@npm:1.13.1"
   dependencies:
-    turbo-darwin-64: 1.13.0
-    turbo-darwin-arm64: 1.13.0
-    turbo-linux-64: 1.13.0
-    turbo-linux-arm64: 1.13.0
-    turbo-windows-64: 1.13.0
-    turbo-windows-arm64: 1.13.0
+    turbo-darwin-64: 1.13.1
+    turbo-darwin-arm64: 1.13.1
+    turbo-linux-64: 1.13.1
+    turbo-linux-arm64: 1.13.1
+    turbo-windows-64: 1.13.1
+    turbo-windows-arm64: 1.13.1
   dependenciesMeta:
     turbo-darwin-64:
       optional: true
@@ -12512,7 +12512,7 @@ __metadata:
       optional: true
   bin:
     turbo: bin/turbo
-  checksum: 6cf6a1665ea448c85f7397e6873dd540df781b29aaffb17458ee5735655d49ca9113848025cad52098a2f1e7e32a87dc599cb8c412f846f6796032c8dc1977b4
+  checksum: 739145f41c04420f485153c7c1a27bdeaa13bf0baf9cbd19ae12769e1c14b6d30154e6399af7382242abffaa95759a34e57ec20c77e944ff05482e50c9cf7200
   languageName: node
   linkType: hard
 

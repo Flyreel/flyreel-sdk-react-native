@@ -5,6 +5,9 @@ buildscript {
   repositories {
     google()
     mavenCentral()
+    maven {
+      url "https://flyreelsdk.jfrog.io/artifactory/flyreel-androidsdk"
+    }
   }
 
   dependencies {
@@ -77,18 +80,21 @@ android {
   }
 }
 
-repositories {
-  mavenCentral()
-  google()
+rootProject.allprojects {
+  repositories {
+    google()
+    mavenCentral()
+    maven {
+      url "https://flyreelsdk.jfrog.io/artifactory/flyreel-androidsdk"
+    }
+  }
 }
 
 def kotlin_version = getExtOrDefault("kotlinVersion")
 
 dependencies {
-  // For < 0.71, this will be from the local maven repo
-  // For > 0.71, this will be replaced by `com.facebook.react:react-android:$version` by react gradle plugin
-  //noinspection GradleDynamicVersion
   implementation "com.facebook.react:react-native:+"
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+  implementation "lexisnexis.flyreel:android-sdk:1.0.1"
 }
 

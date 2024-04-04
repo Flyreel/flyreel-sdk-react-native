@@ -16,21 +16,24 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+      <TouchableOpacity style={styles.button} onPress={() => Flyreel.open()}>
+        <Text style={styles.buttonText}>Open Flyreel</Text>
+      </TouchableOpacity>
       <TouchableOpacity
         style={styles.button}
         onPress={() =>
-          Flyreel.open(
+          Flyreel.openWithDeeplink(
             'https://your.custom.url/?flyreelAccessCode=6M4T0T&flyreelZipCode=80212',
-            false
+            true
           )
         }
       >
-        <Text style={styles.buttonText}>Open Flyreel</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.button}>
         <Text style={styles.buttonText}>Open Flyreel with URL</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => Flyreel.openWithCredentials('80212', '6M4T0T', true)}
+      >
         <Text style={styles.buttonText}>Open Flyreel with credentials</Text>
       </TouchableOpacity>
     </View>

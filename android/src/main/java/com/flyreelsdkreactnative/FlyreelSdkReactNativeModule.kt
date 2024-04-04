@@ -17,8 +17,6 @@ class FlyreelSdkReactNativeModule(private val reactContext: ReactApplicationCont
     return NAME
   }
 
-  // Example method
-  // See https://reactnative.dev/docs/native-modules-android
   @ReactMethod
   fun initialize(
     organizationId: String,
@@ -38,10 +36,18 @@ class FlyreelSdkReactNativeModule(private val reactContext: ReactApplicationCont
   }
 
   @ReactMethod
-  fun open(deeplinkUrl: String?, shouldSkipLoginPage: Boolean, promise: Promise) {
+  fun open(promise: Promise) {
+    Flyreel.openFlyreel(
+      context = reactContext.currentActivity!!
+    )
+    promise.resolve(null)
+  }
+
+  @ReactMethod
+  fun openWithDeeplink(deeplinkUrl: String, shouldSkipLoginPage: Boolean, promise: Promise) {
     Flyreel.openFlyreel(
       context = reactContext.currentActivity!!,
-      deeplinkUri = deeplinkUrl?.let { url -> Uri.parse(url) },
+      deeplinkUri = Uri.parse(deeplinkUrl),
       shouldSkipLoginPage = shouldSkipLoginPage
     )
     promise.resolve(null)

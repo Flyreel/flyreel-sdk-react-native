@@ -15,9 +15,18 @@ class FlyreelSdkReactNative: NSObject {
         resolve(nil)
     }
     
-    @objc(open:shouldSkipLoginPage:resolve:reject:)
-    func open(_ deeplink: String, shouldSkipLoginPage: Bool, resolve: RCTPromiseResolveBlock,
+    @objc(open:reject:)
+    func open(_ resolve: RCTPromiseResolveBlock,
               rejecter reject: RCTPromiseRejectBlock) -> Void {
+        let rootView = UIApplication.shared.delegate!.window!!.rootViewController!
+        FlyreelSDK.shared.presentFlyreel(on: rootView)
+        resolve(nil)
+    }
+
+    @objc(openWithDeeplink:shouldSkipLoginPage:resolve:reject:)
+    func openWithDeeplink(_ deeplink: String, shouldSkipLoginPage: Bool, resolve: RCTPromiseResolveBlock,
+              rejecter reject: RCTPromiseRejectBlock) -> Void {
+
         let rootView = UIApplication.shared.delegate!.window!!.rootViewController!
         if let deeplinkURL = URL(string: deeplink ?? "") {
             FlyreelSDK.shared.presentFlyreel(on: rootView, deepLinkURL: deeplinkURL, shouldSkipLoginPage: shouldSkipLoginPage)

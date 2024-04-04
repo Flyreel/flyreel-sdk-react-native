@@ -1,6 +1,5 @@
 #import <React/RCTBridgeModule.h>
 
-// @interface RCT_EXTERN_MODULE(FlyreelSdkReactNative, NSObject)
 @interface RCT_EXTERN_REMAP_MODULE(Flyreel, FlyreelSdkReactNative, NSObject)
 
 RCT_EXTERN_METHOD(initialize:(NSString *)organizationId
@@ -9,13 +8,16 @@ RCT_EXTERN_METHOD(initialize:(NSString *)organizationId
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 
-RCT_EXTERN_METHOD(open:(NSString *)deeplinkUrl
+RCT_EXTERN_METHOD(open:(RCTPromiseResolveBlock)resolve
+                  reject:(RCTPromiseRejectBlock)reject)
+
+RCT_EXTERN_METHOD(openWithDeeplink:(NSString *)deeplinkUrl
                   shouldSkipLoginPage:(BOOL)shouldSkipLoginPage
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 
 RCT_EXTERN_METHOD(openWithCredentials:(NSString *)zipCode
-                  accessCode:(NSNumber *)accessCode
+                  accessCode:(NSString *)accessCode
                   shouldSkipLoginPage:(BOOL)shouldSkipLoginPage
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)

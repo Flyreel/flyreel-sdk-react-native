@@ -3,13 +3,25 @@ import Flyreel
 @objc(FlyreelSdkReactNative)
 class FlyreelSdkReactNative: NSObject {
     
-    @objc(initialize:settingsVersion:environment:resolve:reject:)
-    func initialize(_ organizationId: String, settingsVersion: NSNumber, environment: String, resolve: RCTPromiseResolveBlock,
+    @objc(initialize:settingsVersion:resolve:reject:)
+    func initialize(_ organizationId: String, settingsVersion: NSNumber, resolve: RCTPromiseResolveBlock,
                     rejecter reject: RCTPromiseRejectBlock) -> Void {
         let configuration = FlyreelConfiguration(
                         settingsVersion: settingsVersion.stringValue,
                         organizationId: organizationId,
-                        environment: mapEnvironment(environment: environment)
+                        environment: FlyreelEnvironment.production
+                    )
+        FlyreelSDK.shared.set(configuration: configuration)
+        resolve(nil)
+    }
+
+    @objc(initializeWithSandbox:settingsVersion:resolve:reject:)
+    func initializeWithSandbox(_ organizationId: String, settingsVersion: NSNumber, resolve: RCTPromiseResolveBlock,
+                    rejecter reject: RCTPromiseRejectBlock) -> Void {
+        let configuration = FlyreelConfiguration(
+                        settingsVersion: settingsVersion.stringValue,
+                        organizationId: organizationId,
+                        environment: FlyreelEnvironment.sandbox
                     )
         FlyreelSDK.shared.set(configuration: configuration)
         resolve(nil)
@@ -51,15 +63,4 @@ class FlyreelSdkReactNative: NSObject {
         FlyreelSDK.shared.enableLogs()
         resolve(nil)
     }
-    
-    func mapEnvironment(environment: String) -> FlyreelEnvironment {
-            switch environment {
-            case "production":
-                return .production
-            case "sandbox":
-                return .sandbox
-            default:
-                return .production
-            }
-        }
 }

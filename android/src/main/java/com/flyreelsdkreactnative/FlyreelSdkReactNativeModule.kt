@@ -21,7 +21,6 @@ class FlyreelSdkReactNativeModule(private val reactContext: ReactApplicationCont
   fun initialize(
     organizationId: String,
     settingsVersion: Int,
-    environment: String = "production",
     promise: Promise
   ) {
     Flyreel.initialize(
@@ -29,7 +28,24 @@ class FlyreelSdkReactNativeModule(private val reactContext: ReactApplicationCont
       FlyreelConfiguration(
         organizationId = organizationId,
         settingsVersion = settingsVersion,
-        environment = mapEnvironment(environment)
+        environment = FlyreelEnvironment.Production
+      )
+    )
+    promise.resolve(null)
+  }
+
+  @ReactMethod
+  fun initializeWithSandbox(
+    organizationId: String,
+    settingsVersion: Int,
+    promise: Promise
+  ) {
+    Flyreel.initialize(
+      reactApplicationContext.applicationContext as Application,
+      FlyreelConfiguration(
+        organizationId = organizationId,
+        settingsVersion = settingsVersion,
+        environment = FlyreelEnvironment.Sandbox
       )
     )
     promise.resolve(null)
@@ -69,13 +85,6 @@ class FlyreelSdkReactNativeModule(private val reactContext: ReactApplicationCont
     Flyreel.enableLogs()
     promise.resolve(null)
   }
-
-  private fun mapEnvironment(environment: String) =
-    when (environment) {
-      "production" -> FlyreelEnvironment.Production
-      "sandbox" -> FlyreelEnvironment.Sandbox
-      else -> throw Exception("Wrong Flyreel environment")
-    }
 
   companion object {
     const val NAME = "Flyreel"

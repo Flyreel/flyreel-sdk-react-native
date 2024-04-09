@@ -4,7 +4,11 @@
 
 RCT_EXTERN_METHOD(initialize:(NSString *)organizationId
                   settingsVersion:(nonnull NSNumber *)settingsVersion
-                  environment:(NSString *)environment
+                  resolve:(RCTPromiseResolveBlock)resolve
+                  reject:(RCTPromiseRejectBlock)reject)
+
+RCT_EXTERN_METHOD(initializeWithSandbox:(NSString *)organizationId
+                  settingsVersion:(nonnull NSNumber *)settingsVersion
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 

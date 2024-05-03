@@ -1,5 +1,4 @@
 import { NativeModules, Platform } from 'react-native';
-// const {Flyreel} = NativeModules;
 
 const LINKING_ERROR =
   `The package 'flyreel-sdk-react-native' doesn't seem to be linked. Make sure: \n\n` +

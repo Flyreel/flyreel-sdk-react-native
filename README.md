@@ -3,6 +3,7 @@
 [![Platform](https://img.shields.io/badge/platform-Android-orange.svg)](https://github.com/Flyreel/flyreel-sdk-android)
 [![Platform](https://img.shields.io/badge/platform-iOS-orange.svg)](https://github.com/Flyreel/flyreel-sdk-ios)
 [![Languages](https://img.shields.io/badge/language-TS-orange.svg)](https://github.com/Flyreel/flyreel-sdk-react-native)
+[![Releases](https://img.shields.io/npm/v/flyreel-sdk-react-native?color=blue)](https://www.npmjs.com/package/flyreel-sdk-react-native)
 
 ## Requirements:
 
@@ -16,7 +17,13 @@
 
 ## Installation
 
-<!-- TODO -->
+```bash
+$ npm install --save flyreel-sdk-react-native
+# --- or ---
+$ yarn add flyreel-sdk-react-native
+```
+
+_Don't forget to run `pod install` after that !_
 
 ## Usage
 

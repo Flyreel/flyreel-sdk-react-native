@@ -1,7 +1,7 @@
 {
   "name": "flyreel-sdk-react-native",
-  "version": "0.1.0",
-  "description": "Flyreel",
+  "version": "0.0.1",
+  "description": "React native plugin for Flyreel SDK - an advanced property survey solution for U.S. insurance carriers.",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/src/index.d.ts",
@@ -43,12 +43,12 @@
     "type": "git",
     "url": "git+https://github.com/Flyreel/flyreel-sdk-react-native.git"
   },
-  "author": "Paweł Ługowski <pawel.lugowski@crustlab.com> (https://github.com/pawellugowski)",
+  "author": "Flyreel (https://flyreel.co)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Flyreel/flyreel-sdk-react-native/issues"
   },
-  "homepage": "https://github.com/Flyreel/flyreel-sdk-react-native#readme",
+  "homepage": "https://flyreel.co",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },

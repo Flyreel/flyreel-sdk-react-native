@@ -15,6 +15,6 @@ const Flyreel = NativeModules.Flyreel
           throw new Error(LINKING_ERROR);
         },
       }
-  );
+    );
 
 export default Flyreel;

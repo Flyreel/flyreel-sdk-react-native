@@ -9,7 +9,7 @@ type FlyreelSDKType = {
   open(): Promise<void>;
   openWithDeeplink(
     deeplinkUrl: String,
-    shouldSkipLoginPage: Boolean
+    shouldSkipLoginPage: boolean
   ): Promise<void>;
   openWithCredentials(
     zipCode: String,

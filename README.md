@@ -44,6 +44,15 @@ permission settings in your Info.plist file.
 </dict>
 ```
 
+### Importing
+
+To use the Flyreel SDK, import it into your javascript or typescript files like so: 
+
+```TS
+import Flyreel from 'flyreel-sdk-react-native'
+```
+
+
 ### Initialization
 
 To use the Flyreel SDK, you must provide a configuration with the following parameters:

@@ -1,6 +1,6 @@
 {
   "name": "@flyreel/flyreel-sdk-react-native",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "React native plugin for Flyreel SDK - an advanced property survey solution for U.S. insurance carriers.",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",

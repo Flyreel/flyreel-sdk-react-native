@@ -66,9 +66,9 @@ PODS:
   - FlipperKit/SKIOSNetworkPlugin (0.201.0):
     - FlipperKit/Core
     - FlipperKit/FlipperKitNetworkPlugin
-  - Flyreel (1.0.3)
-  - flyreel-sdk-react-native (0.1.0):
-    - Flyreel (= 1.0.3)
+  - Flyreel (1.0.4)
+  - flyreel-sdk-react-native (0.0.3):
+    - Flyreel (= 1.0.4)
     - glog
     - RCT-Folly (= 2022.05.16.00)
     - React-Core
@@ -1328,8 +1328,8 @@ SPEC CHECKSUMS:
   Flipper-Glog: 70c50ce58ddaf67dc35180db05f191692570f446
   Flipper-PeerTalk: 116d8f857dc6ef55c7a5a75ea3ceaafe878aadc9
   FlipperKit: 37525a5d056ef9b93d1578e04bc3ea1de940094f
-  Flyreel: 4dea92339106c52812806ead32cc76d85ab8939b
-  flyreel-sdk-react-native: 9fb20909906c8ac46eb3f4a5101c10bba4b6b82b
+  Flyreel: 68e77f1021354071edaf04c49ae27b509a07286c
+  flyreel-sdk-react-native: d9711067c8aead8e6271ba623b523ef94973d0c8
   fmt: ff9d55029c625d3757ed641535fd4a75fedc7ce9
   glog: c5d68082e772fa1c511173d6b30a9de2c05a69a2
   hermes-engine: 9cecf9953a681df7556b8cc9c74905de8f3293c0

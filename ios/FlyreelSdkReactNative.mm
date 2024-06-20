@@ -26,6 +26,11 @@ RCT_EXTERN_METHOD(openWithCredentials:(NSString *)zipCode
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 
+RCT_EXTERN_METHOD(checkStatus:(NSString *)zipCode
+                  accessCode:(NSString *)accessCode
+                  resolve:(RCTPromiseResolveBlock)resolve
+                  reject:(RCTPromiseRejectBlock)reject)
+
 RCT_EXTERN_METHOD(enableLogs:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 

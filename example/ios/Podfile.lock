@@ -66,12 +66,14 @@ PODS:
   - FlipperKit/SKIOSNetworkPlugin (0.201.0):
     - FlipperKit/Core
     - FlipperKit/FlipperKitNetworkPlugin
-  - Flyreel (1.0.4)
+  - Flyreel (1.0.7):
+    - FlyreelCamera (= 0.0.1)
   - flyreel-sdk-react-native (0.0.3):
-    - Flyreel (= 1.0.4)
+    - Flyreel (= 1.0.7)
     - glog
     - RCT-Folly (= 2022.05.16.00)
     - React-Core
+  - FlyreelCamera (0.0.1)
   - fmt (6.2.1)
   - glog (0.3.5)
   - hermes-engine (0.73.6):
@@ -1117,6 +1119,8 @@ PODS:
     - React-jsi (= 0.73.6)
     - React-logger (= 0.73.6)
     - React-perflogger (= 0.73.6)
+  - RNSnackbar (2.6.2):
+    - React-Core
   - SocketRocket (0.6.1)
   - Yoga (1.14.0)
 
@@ -1194,6 +1198,7 @@ DEPENDENCIES:
   - React-runtimescheduler (from `../node_modules/react-native/ReactCommon/react/renderer/runtimescheduler`)
   - React-utils (from `../node_modules/react-native/ReactCommon/react/utils`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
+  - RNSnackbar (from `../node_modules/react-native-snackbar`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -1208,6 +1213,7 @@ SPEC REPOS:
     - Flipper-PeerTalk
     - FlipperKit
     - Flyreel
+    - FlyreelCamera
     - fmt
     - libevent
     - OpenSSL-Universal
@@ -1311,6 +1317,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/react/utils"
   ReactCommon:
     :path: "../node_modules/react-native/ReactCommon"
+  RNSnackbar:
+    :path: "../node_modules/react-native-snackbar"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -1328,8 +1336,9 @@ SPEC CHECKSUMS:
   Flipper-Glog: 70c50ce58ddaf67dc35180db05f191692570f446
   Flipper-PeerTalk: 116d8f857dc6ef55c7a5a75ea3ceaafe878aadc9
   FlipperKit: 37525a5d056ef9b93d1578e04bc3ea1de940094f
-  Flyreel: 68e77f1021354071edaf04c49ae27b509a07286c
-  flyreel-sdk-react-native: d9711067c8aead8e6271ba623b523ef94973d0c8
+  Flyreel: 02546a0e4a278df351c4f22a85f4178f0ffd938b
+  flyreel-sdk-react-native: 64a4dcfad154f7d89957e912ff70a3f39cccbcb8
+  FlyreelCamera: f8136ed55ad582801358b91daba4fe5e0aad2cd6
   fmt: ff9d55029c625d3757ed641535fd4a75fedc7ce9
   glog: c5d68082e772fa1c511173d6b30a9de2c05a69a2
   hermes-engine: 9cecf9953a681df7556b8cc9c74905de8f3293c0
@@ -1376,6 +1385,7 @@ SPEC CHECKSUMS:
   React-runtimescheduler: 9636eee762c699ca7c85751a359101797e4c8b3b
   React-utils: d16c1d2251c088ad817996621947d0ac8167b46c
   ReactCommon: 2aa35648354bd4c4665b9a5084a7d37097b89c10
+  RNSnackbar: 3727b42bf6c4314a53c18185b5203e915a4ab020
   SocketRocket: f32cd54efbe0f095c4d7594881e52619cfe80b17
   Yoga: 805bf71192903b20fc14babe48080582fee65a80
 

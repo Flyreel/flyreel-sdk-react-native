@@ -16,6 +16,10 @@ type FlyreelSDKType = {
     accessCode: String,
     shouldSkipLoginPage: boolean
   ): Promise<void>;
+  checkStatus(
+    zipCode: String,
+    accessCode: String
+  ): Promise<Map<String, String>>;
   enableLogs(): Promise<void>;
 };
 

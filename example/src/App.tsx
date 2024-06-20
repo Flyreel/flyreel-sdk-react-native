@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   NativeModules,
 } from 'react-native';
+import Snackbar from 'react-native-snackbar';
 const { Flyreel } = NativeModules;
 
 export default function App() {
@@ -35,6 +36,25 @@ export default function App() {
         onPress={() => Flyreel.openWithCredentials('80212', '6M4T0T', true)}
       >
         <Text style={styles.buttonText}>Open Flyreel with credentials</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={async () => {
+          try {
+            var flyreelStatus = await Flyreel.checkStatus('80212', '6M4T0T');
+            Snackbar.show({
+              text: `status: ${flyreelStatus.status}, expiration date: ${flyreelStatus.expiration}`,
+              duration: Snackbar.LENGTH_LONG,
+            });
+          } catch (error) {
+            Snackbar.show({
+              text: `error ${error}`,
+              duration: Snackbar.LENGTH_LONG,
+            });
+          }
+        }}
+      >
+        <Text style={styles.buttonText}>Check status</Text>
       </TouchableOpacity>
     </View>
   );

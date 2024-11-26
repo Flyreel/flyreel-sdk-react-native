@@ -1,7 +1,11 @@
 import { NativeModules, Platform } from 'react-native';
 
 type FlyreelSDKType = {
-  initialize(organizationId: String, settingsVersion: number): Promise<void>;
+  initialize(
+    organizationId: String,
+    settingsVersion: number,
+    environment: String
+  ): Promise<void>;
   initializeWithSandbox(
     organizationId: String,
     settingsVersion: number

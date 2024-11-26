@@ -1,15 +1,14 @@
-import Flyreel
+@_spi(FlyreelInternal) import Flyreel
 
 @objc(FlyreelSdkReactNative)
 class FlyreelSdkReactNative: NSObject {
     
-    @objc(initialize:settingsVersion:resolve:reject:)
-    func initialize(_ organizationId: String, settingsVersion: NSNumber, resolve: RCTPromiseResolveBlock,
-                    rejecter reject: RCTPromiseRejectBlock) -> Void {
+    @objc(initialize:settingsVersion:environment:resolve:reject:)
+    func initialize(_ organizationId: String, settingsVersion: NSNumber, environment: FlyreelEnvironment = .production, resolve: RCTPromiseResolveBlock, rejecter reject: RCTPromiseRejectBlock) -> Void {
         let configuration = FlyreelConfiguration(
                         settingsVersion: settingsVersion.stringValue,
                         organizationId: organizationId,
-                        environment: FlyreelEnvironment.production
+                        environment: environment
                     )
         FlyreelSDK.shared.set(configuration: configuration)
         resolve(nil)

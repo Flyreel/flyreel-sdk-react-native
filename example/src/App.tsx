@@ -11,7 +11,7 @@ const { Flyreel } = NativeModules;
 
 export default function App() {
   React.useEffect(() => {
-    Flyreel.initialize('OrganizationID', 1);
+    Flyreel.initialize('OrganizationID', 1, 'staging');
     Flyreel.enableLogs();
   }, []);
 

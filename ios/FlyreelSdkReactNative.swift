@@ -3,13 +3,11 @@
 @objc(FlyreelSdkReactNative)
 class FlyreelSdkReactNative: NSObject {
     
-    @objc(initialize:settingsVersion:environment:resolve:reject:)
-    func initialize(_ organizationId: String, settingsVersion: NSNumber, environment: FlyreelEnvironment = .production, resolve: RCTPromiseResolveBlock, rejecter reject: RCTPromiseRejectBlock) -> Void {
+    @objc(initialize:settingsVersion:resolve:reject:)
+    func initialize(_ organizationId: String, settingsVersion: NSNumber, resolve: RCTPromiseResolveBlock, rejecter reject: RCTPromiseRejectBlock) -> Void {
         let configuration = FlyreelConfiguration(
                         settingsVersion: settingsVersion.stringValue,
-                        organizationId: organizationId,
-                        environment: environment
-                    )
+                        organizationId: organizationId)
         FlyreelSDK.shared.set(configuration: configuration)
         resolve(nil)
     }
@@ -21,6 +19,18 @@ class FlyreelSdkReactNative: NSObject {
                         settingsVersion: settingsVersion.stringValue,
                         organizationId: organizationId,
                         environment: FlyreelEnvironment.sandbox
+                    )
+        FlyreelSDK.shared.set(configuration: configuration)
+        resolve(nil)
+    }
+
+    @objc(initializeWithStaging:settingsVersion:resolve:reject:)
+    func initializeWithStaging(_ organizationId: String, settingsVersion: NSNumber, resolve: RCTPromiseResolveBlock,
+                    rejecter reject: RCTPromiseRejectBlock) -> Void {
+        let configuration = FlyreelConfiguration(
+                        settingsVersion: settingsVersion.stringValue,
+                        organizationId: organizationId,
+                        environment: FlyreelEnvironment.staging
                     )
         FlyreelSDK.shared.set(configuration: configuration)
         resolve(nil)

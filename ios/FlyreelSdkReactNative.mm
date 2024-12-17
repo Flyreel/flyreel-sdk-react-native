@@ -12,6 +12,11 @@ RCT_EXTERN_METHOD(initializeWithSandbox:(NSString *)organizationId
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 
+RCT_EXTERN_METHOD(initializeWithStaging:(NSString *)organizationId
+                  settingsVersion:(nonnull NSNumber *)settingsVersion
+                  resolve:(RCTPromiseResolveBlock)resolve
+                  reject:(RCTPromiseRejectBlock)reject)
+
 RCT_EXTERN_METHOD(open:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 

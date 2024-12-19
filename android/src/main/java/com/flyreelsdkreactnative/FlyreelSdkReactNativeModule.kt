@@ -55,6 +55,23 @@ class FlyreelSdkReactNativeModule(private val reactContext: ReactApplicationCont
   }
 
   @ReactMethod
+  fun initializeWithStaging(
+    organizationId: String,
+    settingsVersion: Int,
+    promise: Promise
+  ) {
+    Flyreel.initialize(
+      reactApplicationContext.applicationContext as Application,
+      FlyreelConfiguration(
+        organizationId = organizationId,
+        settingsVersion = settingsVersion,
+        environment = FlyreelEnvironment.Staging
+      )
+    )
+    promise.resolve(null)
+  }
+
+  @ReactMethod
   fun open(promise: Promise) {
     Flyreel.openFlyreel(
       context = reactContext.currentActivity!!

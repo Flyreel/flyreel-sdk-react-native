@@ -95,6 +95,6 @@ def kotlin_version = getExtOrDefault("kotlinVersion")
 dependencies {
   implementation "com.facebook.react:react-native:+"
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-  implementation "lexisnexis.flyreel:android-sdk:1.0.3"
+  implementation "lexisnexis.flyreel:android-sdk:1.1.1"
 }
 

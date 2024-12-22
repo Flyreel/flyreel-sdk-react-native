@@ -1,5 +1,5 @@
 {
-  "name": "flyreel-sdk-react-native-example",
+  "name": "@flyreel/flyreel-sdk-react-native-example",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -24,7 +24,7 @@
     "@react-native/babel-preset": "0.76.5",
     "@react-native/metro-config": "0.76.5",
     "@react-native/typescript-config": "0.76.5",
-    "react-native-builder-bob": "^0.35.2"
+    "react-native-builder-bob": "^0.32.0"
   },
   "engines": {
     "node": ">=18"

@@ -1,47 +1,7 @@
-import { NativeModules, Platform } from 'react-native';
+import {
+  Flyreel,
+  FlyreelEnvironment,
+  type FlyreelCheckStatus,
+} from './Flyreel';
 
-type FlyreelSDKType = {
-  initialize(
-    organizationId: String,
-    settingsVersion: number,
-    environment: String
-  ): Promise<void>;
-  initializeWithSandbox(
-    organizationId: String,
-    settingsVersion: number
-  ): Promise<void>;
-  open(): Promise<void>;
-  openWithDeeplink(
-    deeplinkUrl: String,
-    shouldSkipLoginPage: boolean
-  ): Promise<void>;
-  openWithCredentials(
-    zipCode: String,
-    accessCode: String,
-    shouldSkipLoginPage: boolean
-  ): Promise<void>;
-  checkStatus(
-    zipCode: String,
-    accessCode: String
-  ): Promise<Map<String, String>>;
-  enableLogs(): Promise<void>;
-};
-
-const LINKING_ERROR =
-  `The package 'flyreel-sdk-react-native' doesn't seem to be linked. Make sure: \n\n` +
-  Platform.select({ ios: "- You have run 'pod install'\n", default: '' }) +
-  '- You rebuilt the app after installing the package\n' +
-  '- You are not using Expo Go\n';
-
-const Flyreel = NativeModules.Flyreel
-  ? NativeModules.Flyreel
-  : new Proxy(
-      {},
-      {
-        get() {
-          throw new Error(LINKING_ERROR);
-        },
-      }
-    );
-
-export default Flyreel as FlyreelSDKType;
+export { Flyreel, FlyreelEnvironment, type FlyreelCheckStatus };

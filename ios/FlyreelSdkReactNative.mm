@@ -1,14 +1,10 @@
 #import <React/RCTBridgeModule.h>
+#import <React/RCTEventEmitter.h>
 
 @interface RCT_EXTERN_REMAP_MODULE(Flyreel, FlyreelSdkReactNative, NSObject)
 
 RCT_EXTERN_METHOD(initialize:(NSString *)organizationId
-                  settingsVersion:(nonnull NSNumber *)settingsVersion
-                  resolve:(RCTPromiseResolveBlock)resolve
-                  reject:(RCTPromiseRejectBlock)reject)
-
-RCT_EXTERN_METHOD(initializeWithSandbox:(NSString *)organizationId
-                  settingsVersion:(nonnull NSNumber *)settingsVersion
+                  environment:(NSString *)environment
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 
@@ -32,6 +28,9 @@ RCT_EXTERN_METHOD(checkStatus:(NSString *)zipCode
                   reject:(RCTPromiseRejectBlock)reject)
 
 RCT_EXTERN_METHOD(enableLogs:(RCTPromiseResolveBlock)resolve
+                  reject:(RCTPromiseRejectBlock)reject)
+
+RCT_EXTERN_METHOD(addAnalyticEventsListener:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 
 + (BOOL)requiresMainQueueSetup

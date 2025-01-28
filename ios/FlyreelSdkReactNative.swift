@@ -3,13 +3,11 @@
 @objc(FlyreelSdkReactNative)
 class FlyreelSdkReactNative: RCTEventEmitter {
 
-  @objc(initialize:settingsVersion:environment:resolve:reject:)
-  func initialize(
-    _ organizationId: String, settingsVersion: NSNumber, environment: String,
+  @objc(initialize:environment:resolve:reject:)
+  func initialize(_ organizationId: String, environment: String,
     resolve: RCTPromiseResolveBlock, rejecter reject: RCTPromiseRejectBlock
   ) {
     let configuration = FlyreelConfiguration(
-      settingsVersion: settingsVersion.stringValue,
       organizationId: organizationId,
       environment: mapEnvironment(environment: environment)
     )

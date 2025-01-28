@@ -4,7 +4,6 @@
 @interface RCT_EXTERN_REMAP_MODULE(Flyreel, FlyreelSdkReactNative, NSObject)
 
 RCT_EXTERN_METHOD(initialize:(NSString *)organizationId
-                  settingsVersion:(nonnull NSNumber *)settingsVersion
                   environment:(NSString *)environment
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)

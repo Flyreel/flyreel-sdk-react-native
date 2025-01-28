@@ -6,11 +6,7 @@ import { Flyreel, FlyreelEnvironment } from '@flyreel/flyreel-sdk-react-native';
 
 export default function App() {
   React.useEffect(() => {
-    Flyreel.initialize(
-      '5d3633f9103a930011996475',
-      1,
-      FlyreelEnvironment.STAGING
-    );
+    Flyreel.initialize('5d3633f9103a930011996475', FlyreelEnvironment.STAGING);
     Flyreel.enableLogs();
     Flyreel.observeAnalyticEvents((event: Map<String, any>) => {
       console.log('Received analytic event:', event);

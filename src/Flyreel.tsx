@@ -3,7 +3,6 @@ import { NativeEventEmitter, NativeModules, Platform } from 'react-native';
 interface FlyreelSDK {
   initialize(
     organizationId: String,
-    settingsVersion: number,
     environment?: FlyreelEnvironment
   ): Promise<void>;
   open(): Promise<void>;
@@ -58,14 +57,9 @@ const eventEmitter = new NativeEventEmitter(NativeModules.Flyreel);
 export const Flyreel: FlyreelSDK = {
   initialize(
     organizationId: String,
-    settingsVersion: number,
     environment: FlyreelEnvironment = FlyreelEnvironment.PRODUCTION
   ): Promise<void> {
-    return FlyreelModule.initialize(
-      organizationId,
-      settingsVersion,
-      environment
-    );
+    return FlyreelModule.initialize(organizationId, environment);
   },
 
   async checkStatus(

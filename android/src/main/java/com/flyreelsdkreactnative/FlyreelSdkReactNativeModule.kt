@@ -30,7 +30,6 @@ class FlyreelSdkReactNativeModule(private val reactContext: ReactApplicationCont
   @ReactMethod
   fun initialize(
     organizationId: String,
-    settingsVersion: Int,
     environment: String,
     promise: Promise
   ) {
@@ -38,7 +37,6 @@ class FlyreelSdkReactNativeModule(private val reactContext: ReactApplicationCont
       reactApplicationContext.applicationContext as Application,
       FlyreelConfiguration(
         organizationId = organizationId,
-        settingsVersion = settingsVersion,
         environment = mapEnvironment(environment)
       )
     )
@@ -129,6 +127,7 @@ fun writableMapOf(vararg values: Pair<String, *>): WritableMap {
       is Boolean -> map.putBoolean(key, value)
       is Double -> map.putDouble(key, value)
       is Int -> map.putInt(key, value)
+      is Long -> map.putDouble(key, value.toDouble())
       is String -> map.putString(key, value)
       is WritableMap -> map.putMap(key, value)
       is WritableArray -> map.putArray(key, value)

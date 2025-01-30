@@ -1,17 +1,16 @@
 import * as React from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-  TouchableOpacity,
-  NativeModules,
-} from 'react-native';
-const { Flyreel } = NativeModules;
+import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+
+import Snackbar from 'react-native-snackbar';
+import { Flyreel, FlyreelEnvironment } from '@flyreel/flyreel-sdk-react-native';
 
 export default function App() {
   React.useEffect(() => {
-    Flyreel.initialize('OrganizationID', 1);
+    Flyreel.initialize('5d3633f9103a930011996475', FlyreelEnvironment.STAGING);
     Flyreel.enableLogs();
+    Flyreel.observeAnalyticEvents((event: Map<String, any>) => {
+      console.log('Received analytic event:', event);
+    });
   }, []);
 
   return (
@@ -35,6 +34,25 @@ export default function App() {
         onPress={() => Flyreel.openWithCredentials('80212', '6M4T0T', true)}
       >
         <Text style={styles.buttonText}>Open Flyreel with credentials</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={async () => {
+          try {
+            var flyreelStatus = await Flyreel.checkStatus('80212', '6M4T0T');
+            Snackbar.show({
+              text: `status: ${flyreelStatus.status}, expiration date: ${flyreelStatus.expiration}`,
+              duration: Snackbar.LENGTH_LONG,
+            });
+          } catch (error) {
+            Snackbar.show({
+              text: `error ${error}`,
+              duration: Snackbar.LENGTH_LONG,
+            });
+          }
+        }}
+      >
+        <Text style={styles.buttonText}>Check status</Text>
       </TouchableOpacity>
     </View>
   );

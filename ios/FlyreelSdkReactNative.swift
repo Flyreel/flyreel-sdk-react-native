@@ -4,7 +4,8 @@
 class FlyreelSdkReactNative: RCTEventEmitter {
 
   @objc(initialize:environment:resolve:reject:)
-  func initialize(_ organizationId: String, environment: String,
+  func initialize(
+    _ organizationId: String, environment: String,
     resolve: RCTPromiseResolveBlock, rejecter reject: RCTPromiseRejectBlock
   ) {
     let configuration = FlyreelConfiguration(
@@ -106,7 +107,7 @@ class FlyreelSdkReactNative: RCTEventEmitter {
 
   // Supported events
   override func supportedEvents() -> [String] {
-    return ["FlyreelAnalyticEvent"]
+    return ["FlyreelAnalyticEvent", "onClose"]
   }
 
   @objc(addAnalyticEventsListener:reject:)
@@ -120,8 +121,18 @@ class FlyreelSdkReactNative: RCTEventEmitter {
     }
     resolve(nil)
   }
-}
 
+  @objc(registerOnClose:reject:)
+  func registerOnClose(
+    _ resolve: RCTPromiseResolveBlock,
+    rejecter reject: RCTPromiseRejectBlock
+  ) {
+    FlyreelSDK.shared.registerOnClose { [weak self] in
+      self?.sendEvent(withName: "onClose", body: nil)
+    }
+    resolve(nil)
+  }
+}
 extension FlyreelAnalyticEvent {
   func toFlutterMap() -> [String: Any?] {
     return [

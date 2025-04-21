@@ -11,6 +11,9 @@ export default function App() {
     Flyreel.observeAnalyticEvents((event: Map<String, any>) => {
       console.log('Received analytic event:', event);
     });
+    Flyreel.registerOnClose(() => {
+      console.log('Flyreel closed');
+    });
   }, []);
 
   return (

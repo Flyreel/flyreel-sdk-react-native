@@ -102,6 +102,14 @@ class FlyreelSdkReactNativeModule(private val reactContext: ReactApplicationCont
     }
   }
 
+  @ReactMethod
+  fun registerOnClose(promise: Promise) {
+    Flyreel.registerOnClose {
+      reactContext.emitDeviceEvent("onClose", null)
+    }
+    promise.resolve(null)
+  }
+
   private fun mapEnvironment(environment: String) =
     when (environment) {
       "production" -> FlyreelEnvironment.Production

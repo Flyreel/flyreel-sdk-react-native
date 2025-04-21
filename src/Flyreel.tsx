@@ -18,6 +18,7 @@ interface FlyreelSDK {
   checkStatus(zipCode: String, accessCode: String): Promise<FlyreelCheckStatus>;
   enableLogs(): Promise<void>;
   observeAnalyticEvents(callback: (data: Map<String, any>) => void): () => void;
+  registerOnClose(callback: () => void): () => void;
 }
 
 // Define the FlyreelEnvironment enum
@@ -81,6 +82,15 @@ export const Flyreel: FlyreelSDK = {
     // Return a function to remove the listener
     return () => subscription.remove();
   },
+
+  registerOnClose(callback: () => void) {
+    FlyreelModule.registerOnClose();
+
+    const subscription = eventEmitter.addListener('onClose', callback);
+
+    return () => subscription.remove();
+  },
+
   open: function (): Promise<void> {
     return FlyreelModule.open();
   },

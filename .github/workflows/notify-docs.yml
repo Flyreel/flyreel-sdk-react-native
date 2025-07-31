@@ -1,0 +1,29 @@
+name: Notify Docs Repo
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+      - autobuild-squid-947_doc_notify_test
+  workflow_dispatch: # Allows manual triggering
+
+jobs:
+  notify-docs:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Repository Dispatch to Docs
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ secrets.DOCS_DISPATCH_TOKEN }}
+          repository: Flyreel/flyreel-sdk-docs  # Replace with your actual docs repo
+          event-type: sdk_update
+          client-payload: |
+            {
+              "source_repo": "${{ github.repository }}",
+              "source_branch": "${{ github.ref_name }}",
+              "commit_sha": "${{ github.sha }}",
+              "commit_message": "${{ github.event.head_commit.message }}",
+              "pusher": "${{ github.event.pusher.name }}"
+            }

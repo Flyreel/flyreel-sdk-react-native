@@ -1,29 +1,28 @@
-name: Notify Docs Repo
+name: Notify Docusaurus Repo
 
 on:
   push:
     branches:
-      - main
+      - "autobuild-*"
       - develop
-      - autobuild-squid-947_doc_notify_test
-  workflow_dispatch: # Allows manual triggering
+      - main
 
 jobs:
-  notify-docs:
+  notify:
     runs-on: ubuntu-latest
-    
     steps:
-      - name: Repository Dispatch to Docs
-        uses: peter-evans/repository-dispatch@v3
-        with:
-          token: ${{ secrets.DOCS_DISPATCH_TOKEN }}
-          repository: Flyreel/flyreel-sdk-docs  # Replace with your actual docs repo
-          event-type: sdk_update
-          client-payload: |
-            {
-              "source_repo": "${{ github.repository }}",
-              "source_branch": "${{ github.ref_name }}",
-              "commit_sha": "${{ github.sha }}",
-              "commit_message": "${{ github.event.head_commit.message }}",
-              "pusher": "${{ github.event.pusher.name }}"
-            }
+      - name: Trigger Docusaurus Update
+        run: |
+          curl -X POST \
+            -H "Accept: application/vnd.github.everest-preview+json" \
+            -H "Content-Type: application/json" \
+            -H "Authorization: Bearer ${{ secrets.DOCUSAURUS_PAT }}" \
+            --data '{
+              "event_type":"sdk_update",
+              "client_payload":{
+                "source_repo":"'"${{ github.repository }}"'",
+                "ref":"'"${{ github.ref }}"'",
+                "sha":"'"${{ github.sha }}"'"
+              }
+            }' \
+            https://api.github.com/repos/Flyreel/flyreel-sdk-docs/dispatches

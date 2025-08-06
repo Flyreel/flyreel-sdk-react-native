@@ -1,7 +1,5 @@
 # Flyreel React SDK
 
-# AJ WAS HERE! JEFF WAS TOO! 
-
 [![Platform](https://img.shields.io/badge/platform-Android-orange.svg)](https://github.com/Flyreel/flyreel-sdk-android)
 [![Platform](https://img.shields.io/badge/platform-iOS-orange.svg)](https://github.com/Flyreel/flyreel-sdk-ios)
 [![Languages](https://img.shields.io/badge/language-TS-orange.svg)](https://github.com/Flyreel/flyreel-sdk-react-native)

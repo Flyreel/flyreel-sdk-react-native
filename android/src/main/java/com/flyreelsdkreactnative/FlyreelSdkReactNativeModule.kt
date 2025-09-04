@@ -17,6 +17,7 @@ import com.lexisnexis.risk.flyreel.FlyreelConfiguration
 import com.lexisnexis.risk.flyreel.FlyreelCoordination
 import com.lexisnexis.risk.flyreel.FlyreelDeviceData
 import com.lexisnexis.risk.flyreel.FlyreelEnvironment
+import com.lexisnexis.risk.flyreel.FlyreelInternalApi
 import com.lexisnexis.risk.flyreel.FlyreelMessageDetails
 
 
@@ -110,6 +111,7 @@ class FlyreelSdkReactNativeModule(private val reactContext: ReactApplicationCont
     promise.resolve(null)
   }
 
+  @OptIn(FlyreelInternalApi::class)
   private fun mapEnvironment(environment: String) =
     when (environment) {
       "production" -> FlyreelEnvironment.Production

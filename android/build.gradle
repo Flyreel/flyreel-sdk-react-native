@@ -8,6 +8,12 @@ buildscript {
     maven {
       url "https://flyreelsdk.jfrog.io/artifactory/flyreel-androidsdk"
     }
+    maven {
+      url "https://flyreelsdk.jfrog.io/artifactory/flyreel-fnol"
+    }
+    maven {
+      url "https://flyreelsdk.jfrog.io/artifactory/flyreel-panorama"
+    }
   }
 
   dependencies {
@@ -86,6 +92,12 @@ rootProject.allprojects {
     mavenCentral()
     maven {
       url "https://flyreelsdk.jfrog.io/artifactory/flyreel-androidsdk"
+    }
+    maven {
+      url "https://flyreelsdk.jfrog.io/artifactory/flyreel-fnol"
+    }
+    maven {
+      url "https://flyreelsdk.jfrog.io/artifactory/flyreel-panorama"
     }
   }
 }

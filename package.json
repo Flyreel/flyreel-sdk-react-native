@@ -1,6 +1,6 @@
 {
   "name": "@flyreel/flyreel-sdk-react-native",
-  "version": "0.0.10",
+  "version": "0.0.11-alpha1",
   "description": "React native plugin for Flyreel SDK - an advanced property survey solution for U.S. insurance carriers.",
   "source": "./src/index.tsx",
   "main": "./lib/commonjs/index.js",
@@ -42,8 +42,7 @@
     "typecheck": "tsc",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "clean": "del-cli android/build example/android/build example/android/app/build example/ios/build lib",
-    "prepare": "bob build",
-    "release": "release-it"
+    "prepare": "bob build"
   },
   "keywords": [
     "react-native",
@@ -68,7 +67,6 @@
     "@evilmartians/lefthook": "^1.5.0",
     "@react-native-community/cli": "15.0.1",
     "@react-native/eslint-config": "^0.73.1",
-    "@release-it/conventional-changelog": "^9.0.2",
     "@types/jest": "^29.5.5",
     "@types/react": "^18.2.44",
     "commitlint": "^17.0.2",
@@ -81,7 +79,6 @@
     "react": "18.3.1",
     "react-native": "0.76.5",
     "react-native-builder-bob": "^0.35.2",
-    "release-it": "^17.10.0",
     "turbo": "^1.10.7",
     "typescript": "^5.2.2"
   },
@@ -107,23 +104,6 @@
     "extends": [
       "@commitlint/config-conventional"
     ]
-  },
-  "release-it": {
-    "git": {
-      "commitMessage": "chore: release ${version}",
-      "tagName": "v${version}"
-    },
-    "npm": {
-      "publish": true
-    },
-    "github": {
-      "release": true
-    },
-    "plugins": {
-      "@release-it/conventional-changelog": {
-        "preset": "angular"
-      }
-    }
   },
   "eslintConfig": {
     "root": true,

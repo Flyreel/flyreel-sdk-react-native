@@ -1,6 +1,6 @@
 {
   "name": "@flyreel/flyreel-sdk-react-native",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "React native plugin for Flyreel SDK - an advanced property survey solution for U.S. insurance carriers.",
   "source": "./src/index.tsx",
   "main": "./lib/commonjs/index.js",
@@ -65,7 +65,6 @@
   },
   "devDependencies": {
     "@commitlint/config-conventional": "^17.0.2",
-    "@evilmartians/lefthook": "^1.5.0",
     "@react-native-community/cli": "15.0.1",
     "@react-native/eslint-config": "^0.73.1",
     "@release-it/conventional-changelog": "^9.0.2",

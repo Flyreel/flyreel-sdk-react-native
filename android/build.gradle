@@ -11,6 +11,9 @@ buildscript {
     maven {
       url "https://flyreelsdk.jfrog.io/artifactory/flyreel-fnol"
     }
+    maven {
+      url "https://flyreelsdk.jfrog.io/artifactory/flyreel-panorama"
+    }
   }
 
   dependencies {
@@ -93,6 +96,9 @@ rootProject.allprojects {
     maven {
       url "https://flyreelsdk.jfrog.io/artifactory/flyreel-fnol"
     }
+    maven {
+      url "https://flyreelsdk.jfrog.io/artifactory/flyreel-panorama"
+    }
   }
 }
 
@@ -101,6 +107,6 @@ def kotlin_version = getExtOrDefault("kotlinVersion")
 dependencies {
   implementation "com.facebook.react:react-native:+"
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-  implementation "lexisnexis.flyreel:android-sdk:1.1.6"
+  implementation "lexisnexis.flyreel:android-sdk:1.1.7"
 }
 

@@ -2,12 +2,12 @@ PODS:
   - boost (1.84.0)
   - DoubleConversion (1.1.6)
   - FBLazyVector (0.76.5)
-  - Flyreel (1.1.7):
+  - Flyreel (1.1.8):
     - FlyreelCamera (= 0.0.2)
     - FlyreelFNOL (= 0.0.2)
-  - flyreel-sdk-react-native (0.0.11):
+  - flyreel-sdk-react-native (0.0.14):
     - DoubleConversion
-    - Flyreel (= 1.1.7)
+    - Flyreel (= 1.1.8)
     - glog
     - hermes-engine
     - RCT-Folly (= 2024.01.01.00)
@@ -1754,8 +1754,8 @@ SPEC CHECKSUMS:
   boost: 1dca942403ed9342f98334bf4c3621f011aa7946
   DoubleConversion: f16ae600a246532c4020132d54af21d0ddb2a385
   FBLazyVector: 1bf99bb46c6af9a2712592e707347315f23947aa
-  Flyreel: c01cb5bab660362a6fe2a67a191fbca4afe55ef8
-  flyreel-sdk-react-native: 7252a6eddb491fb5f8987767c087f07e7846fc5d
+  Flyreel: 2006b2f1a921d53f6a0020e3918cc97ffa83115d
+  flyreel-sdk-react-native: d752bc3c3d4578a21c5c54d25fb04c36a40ba1aa
   FlyreelCamera: 2980f70a0b2c3203533ead1e9086848b44020036
   FlyreelFNOL: 7a94e1a7b8f661ebcd6813420dd5530b01d263f1
   fmt: 10c6e61f4be25dc963c36bd73fc7b1705fe975be

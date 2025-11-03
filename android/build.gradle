@@ -12,6 +12,9 @@ buildscript {
       url "https://flyreelsdk.jfrog.io/artifactory/flyreel-fnol"
     }
     maven {
+      url "https://flyreelsdk.jfrog.io/artifactory/flyreel-meshscan"
+    }
+    maven {
       url "https://flyreelsdk.jfrog.io/artifactory/flyreel-panorama"
     }
   }
@@ -95,6 +98,9 @@ rootProject.allprojects {
     }
     maven {
       url "https://flyreelsdk.jfrog.io/artifactory/flyreel-fnol"
+    }
+    maven {
+      url "https://flyreelsdk.jfrog.io/artifactory/flyreel-meshscan"
     }
     maven {
       url "https://flyreelsdk.jfrog.io/artifactory/flyreel-panorama"

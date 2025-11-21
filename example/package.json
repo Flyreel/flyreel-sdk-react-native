@@ -1,6 +1,6 @@
 {
   "name": "@flyreel/flyreel-sdk-react-native-example",
-  "version": "0.0.17-alpha.1",
+  "version": "0.0.17-alpha2",
   "private": true,
   "scripts": {
     "android": "react-native run-android",

@@ -46,12 +46,11 @@ permission settings in your Info.plist file.
 
 ### Importing
 
-To use the Flyreel SDK, import it into your javascript or typescript files like so: 
+To use the Flyreel SDK, import it into your javascript or typescript files like so:
 
 ```TS
 import Flyreel from 'flyreel-sdk-react-native'
 ```
-
 
 ### Initialization
 
@@ -86,6 +85,7 @@ Flyreel.openWithCredentials('80212', '6M4T0T', true);
 // open with deeplink url with flyreelAccessCode and flyreelZipCode parameters
 Flyreel.openWithDeeplink('https://your.custom.url/?flyreelAccessCode=6M4T0T&flyreelZipCode=8021', true);
 ```
+
 > [!NOTE]
 > Last parameter determines whether you want to skip login page and login automatically.
 
@@ -123,19 +123,24 @@ await Flyreel.initializeWithSandbox('5d3633f9103a930011996475');
 ## Analytics
 
 ```TS
-/// Subscribes to a stream of analytic events and handles each event with a provided closure.
-///
-/// This function observes a feed of analytic events from the SDK. When an event
-/// is received, the provided handler closure is called with the event as its argument.
-///
-/// - Parameters:
-///   - handler: A closure that is called with the analytic event emitted by the SDK.
-///     The closure takes a single parameter:
-///       - event: A map that contains event's data.
-///       
-Flyreel.observeAnalyticEvents((event: Map<String, any>) => {
-      console.log('Received analytic event:', event);
-    });
+// Subscribe to the event stream to receive all Flyreel events in real-time.
+// Because trigger is an enum / union, you should use a switch statement to extract the specific data you need.
+Flyreel.observeFlyreelEvents((event) => {
+  // Extract data based on the event type
+  switch (event.trigger) {
+    case 'flyreelCompleted':
+      YourAnalyticsProvider.trackEvent('flyreel_completed', {
+        user_id: event.user?.flyreelID,
+        active_time: event.activeTime,
+      });
+      break;
+    case 'sdkClosed':
+      console.log(`SDK Closed after ${event.activeTime} seconds`);
+      break;
+    default:
+      break;
+  }
+});
 ```
 
 ## Firewall whitelisting

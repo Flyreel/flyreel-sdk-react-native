@@ -123,22 +123,24 @@ await Flyreel.initializeWithSandbox('5d3633f9103a930011996475');
 ## Analytics
 
 ```TS
-/// Subscribe to the event stream to receive all Flyreel events in real-time.
-// Because trigger is an enum, you should use a switch statement to extract the specific data you need.
-FlyreelSDK.shared.observeFlyreelEvents { event in
-    // Extract data based on the event type
-    switch event.trigger {
-    case .flyreelCompleted(let activeTime):
-        YourAnalyticsProvider.trackEvent("flyreel_completed", properties: [
-            "user_id": event.user?.flyreelID,
-            "active_time": activeTime
-        ])
-    case .sdkClosed(let activeTime):
-         print("SDK Closed after \(activeTime) seconds")
+// Subscribe to the event stream to receive all Flyreel events in real-time.
+// Because trigger is an enum / union, you should use a switch statement to extract the specific data you need.
+Flyreel.observeFlyreelEvents((event) => {
+  // Extract data based on the event type
+  switch (event.trigger) {
+    case 'flyreelCompleted':
+      YourAnalyticsProvider.trackEvent('flyreel_completed', {
+        user_id: event.user?.flyreelID,
+        active_time: event.activeTime,
+      });
+      break;
+    case 'sdkClosed':
+      console.log(`SDK Closed after ${event.activeTime} seconds`);
+      break;
     default:
-        break
-    }
-}
+      break;
+  }
+});
 ```
 
 ## Firewall whitelisting

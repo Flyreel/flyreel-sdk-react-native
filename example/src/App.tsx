@@ -8,11 +8,8 @@ export default function App() {
   React.useEffect(() => {
     Flyreel.initialize('5d3633f9103a930011996475', FlyreelEnvironment.STAGING);
     Flyreel.enableLogs();
-    Flyreel.observeAnalyticEvents((event: Map<String, any>) => {
-      console.log('Received analytic event:', event);
-    });
-    Flyreel.registerOnClose(() => {
-      console.log('Flyreel closed');
+    Flyreel.observeFlyreelEvents((event: Map<String, any>) => {
+      console.log('Received Flyreel event:', event);
     });
   }, []);
 

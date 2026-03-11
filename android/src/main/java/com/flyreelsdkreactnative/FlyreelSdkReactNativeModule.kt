@@ -11,7 +11,7 @@ import com.facebook.react.bridge.ReactMethod
 import com.facebook.react.bridge.WritableArray
 import com.facebook.react.bridge.WritableMap
 import com.lexisnexis.risk.flyreel.Flyreel
-import com.lexisnexis.risk.flyreel.FlyreelAnalyticEvent
+import com.lexisnexis.risk.flyreel.FlyreelEvent
 import com.lexisnexis.risk.flyreel.FlyreelAnalyticUser
 import com.lexisnexis.risk.flyreel.FlyreelConfiguration
 import com.lexisnexis.risk.flyreel.FlyreelCoordination
@@ -97,18 +97,10 @@ class FlyreelSdkReactNativeModule(private val reactContext: ReactApplicationCont
   }
 
   @ReactMethod
-  fun addAnalyticEventsListener() {
-    Flyreel.observeAnalyticEvents { event ->
+  fun addFlyreelEventListener() {
+    Flyreel.observeFlyreelEvents { event ->
       sendEvent(reactContext, event.toMap())
     }
-  }
-
-  @ReactMethod
-  fun registerOnClose(promise: Promise) {
-    Flyreel.registerOnClose {
-      reactContext.emitDeviceEvent("onClose", null)
-    }
-    promise.resolve(null)
   }
 
   @OptIn(FlyreelInternalApi::class)
@@ -121,7 +113,7 @@ class FlyreelSdkReactNativeModule(private val reactContext: ReactApplicationCont
     }
 
   private fun sendEvent(reactContext: ReactContext, params: WritableMap?) {
-    reactContext.emitDeviceEvent("FlyreelAnalyticEvent", params)
+    reactContext.emitDeviceEvent("FlyreelEvent", params)
   }
 
   companion object {
@@ -147,7 +139,7 @@ fun writableMapOf(vararg values: Pair<String, *>): WritableMap {
   return map
 }
 
-internal fun FlyreelAnalyticEvent.toMap(): WritableMap {
+internal fun FlyreelEvent.toMap(): WritableMap {
   return writableMapOf(
     "user" to user.toMap(),
     "name" to name,
@@ -162,8 +154,6 @@ internal fun FlyreelAnalyticEvent.toMap(): WritableMap {
 internal fun FlyreelAnalyticUser.toMap(): WritableMap {
   return writableMapOf(
     "id" to id,
-    "name" to name,
-    "email" to email,
     "botId" to botId,
     "botName" to botName,
     "organizationId" to organizationId,

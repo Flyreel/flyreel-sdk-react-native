@@ -17,8 +17,7 @@ interface FlyreelSDK {
   ): Promise<void>;
   checkStatus(zipCode: String, accessCode: String): Promise<FlyreelCheckStatus>;
   enableLogs(): Promise<void>;
-  observeAnalyticEvents(callback: (data: Map<String, any>) => void): () => void;
-  registerOnClose(callback: () => void): () => void;
+  observeFlyreelEvents(callback: (data: Map<String, any>) => void): () => void;
 }
 
 // Define the FlyreelEnvironment enum
@@ -71,23 +70,12 @@ export const Flyreel: FlyreelSDK = {
     return { status: checkStatus.status, expiration: checkStatus.expiration };
   },
 
-  observeAnalyticEvents(callback: (data: Map<String, any>) => void) {
-    FlyreelModule.addAnalyticEventsListener();
+  observeFlyreelEvents(callback: (data: Map<String, any>) => void) {
+    FlyreelModule.addFlyreelEventListener();
 
-    const subscription = eventEmitter.addListener(
-      'FlyreelAnalyticEvent',
-      callback
-    );
+    const subscription = eventEmitter.addListener('FlyreelEvent', callback);
 
     // Return a function to remove the listener
-    return () => subscription.remove();
-  },
-
-  registerOnClose(callback: () => void) {
-    FlyreelModule.registerOnClose();
-
-    const subscription = eventEmitter.addListener('onClose', callback);
-
     return () => subscription.remove();
   },
 
@@ -101,6 +89,7 @@ export const Flyreel: FlyreelSDK = {
   ): Promise<void> {
     return FlyreelModule.openWithDeeplink(deeplinkUrl, shouldSkipLoginPage);
   },
+
   openWithCredentials: function (
     zipCode: String,
     accessCode: String,
@@ -112,6 +101,7 @@ export const Flyreel: FlyreelSDK = {
       shouldSkipLoginPage
     );
   },
+
   enableLogs: function (): Promise<void> {
     return FlyreelModule.enableLogs();
   },

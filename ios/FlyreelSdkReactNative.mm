@@ -30,10 +30,7 @@ RCT_EXTERN_METHOD(checkStatus:(NSString *)zipCode
 RCT_EXTERN_METHOD(enableLogs:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 
-RCT_EXTERN_METHOD(addAnalyticEventsListener:(RCTPromiseResolveBlock)resolve
-                  reject:(RCTPromiseRejectBlock)reject)
-                  
-RCT_EXTERN_METHOD(registerOnClose:(RCTPromiseResolveBlock)resolve
+RCT_EXTERN_METHOD(addFlyreelEventListener:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 
 + (BOOL)requiresMainQueueSetup

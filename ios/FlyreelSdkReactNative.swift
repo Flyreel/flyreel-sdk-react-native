@@ -107,37 +107,27 @@ class FlyreelSdkReactNative: RCTEventEmitter {
 
   // Supported events
   override func supportedEvents() -> [String] {
-    return ["FlyreelAnalyticEvent", "onClose"]
+    return ["FlyreelEvent", "onClose"]
   }
 
-  @objc(addAnalyticEventsListener:reject:)
-  func addAnalyticEventsListener(
+  @objc(addFlyreelEventListener:reject:)
+  func addFlyreelEventListener(
     _ resolve: RCTPromiseResolveBlock,
     rejecter reject: RCTPromiseRejectBlock
   ) {
-    FlyreelSDK.shared.observeAnalyticEvents { event in
+    FlyreelSDK.shared.observeFlyreelEvents { event in
       self.sendEvent(
-        withName: "FlyreelAnalyticEvent", body: event.toFlutterMap())
+        withName: "FlyreelEvent", body: event.toFlutterMap())
     }
     resolve(nil)
   }
 
-  @objc(registerOnClose:reject:)
-  func registerOnClose(
-    _ resolve: RCTPromiseResolveBlock,
-    rejecter reject: RCTPromiseRejectBlock
-  ) {
-    FlyreelSDK.shared.registerOnClose { [weak self] in
-      self?.sendEvent(withName: "onClose", body: nil)
-    }
-    resolve(nil)
-  }
 }
-extension FlyreelAnalyticEvent {
+extension FlyreelEvent {
   func toFlutterMap() -> [String: Any?] {
     return [
       "user": user?.toFlutterMap(),
-      "name": eventName,
+      "name": name,
       "timestamp": ISO8601DateFormatter().string(from: timestamp),
       "activeTime": activeTimeFromTrigger(),
       "coordination": coordinationFromTrigger()?.toFlutterMap(),
@@ -149,8 +139,9 @@ extension FlyreelAnalyticEvent {
   private func activeTimeFromTrigger() -> TimeInterval? {
     switch trigger {
     case .questionAsked(let activeTime, _),
-      .questionAnswered(let activeTime, _, _),
-      .flyreelCompleted(let activeTime):
+        .questionAnswered(let activeTime, _, _),
+        .flyreelCompleted(let activeTime),
+        .sdkClosed(let activeTime):
       return activeTime
     case .userLoggedIn:
       return nil
@@ -176,7 +167,7 @@ extension FlyreelAnalyticEvent {
     }
   }
 
-  private func messageDetailsFromTrigger() -> AnalyticMessageDetails? {
+  private func messageDetailsFromTrigger() -> EventMessageDetails? {
     switch trigger {
     case .questionAsked(_, let message),
       .questionAnswered(_, _, let message):
@@ -206,7 +197,7 @@ extension FlyreelCoordinate {
   }
 }
 
-extension AnalyticMessageDetails {
+extension EventMessageDetails {
   func toFlutterMap() -> [String: Any] {
     return [
       "message": message,
@@ -222,8 +213,6 @@ extension FlyreelAnalyticUser {
   func toFlutterMap() -> [String: Any?] {
     return [
       "id": flyreelID,
-      "name": name,
-      "email": email,
       "botId": botId,
       "botName": botName,
       "organizationId": organizationId,

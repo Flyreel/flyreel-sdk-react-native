@@ -15,7 +15,7 @@ registry=https://registry.npmjs.org/
 ### Deployment Steps
 
 1. _Create Release branch_: Create a new release branch from the main branch with the naming convention `release/vX.X.X`, where `X.X.X` is the new version number.
-2. _Update library's version_: Iterate the version number in `flyreel-sdk-react-native.podspec`, `package.json`, and `android/build.gradle` files.
+2. _Update library's version_: Iterate the version number in `flyreel-sdk-react-native.podspec`, `package.json`, `example/package.json`, and `android/build.gradle` files.
 3. _Update Yarn dependencies_: Run `yarn install` to update the dependencies in `yarn.lock` file.
 4. _Update Pod dependencies_: Run `pod install` in the `example/ios` directory to update the dependencies in `Podfile.lock` file.
 5. _Review Readme_: Review the `README.md` file to ensure that the installation instructions are up to date with the new version.

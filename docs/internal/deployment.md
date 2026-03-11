@@ -30,3 +30,5 @@ _The following steps may vary depending on your local environment:_
 11. _Enable npmrc_: Restore the `.npmrc` file in the root directory of the project
 12. _Publish to Github_ Run `npm publish --access public` in the root directory of the project to publish the package to Github Packages.
 13. _Verify Github Package_: Verify that the package has been published successfully by checking [the Github Packages page](https://github.com/Flyreel/flyreel-sdk-react-native/pkgs/npm/flyreel-sdk-react-native/versions)
+14. _Create Github Release_: Create a new release on GitHub using the release branch, and tag it with the new version number.
+15. _Merge Release Branch_: Merge the release branch back into the main branch and delete the release branch after merging.

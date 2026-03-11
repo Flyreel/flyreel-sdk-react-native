@@ -20,7 +20,7 @@ registry=https://registry.npmjs.org/
 4. _Update Pod dependencies_: Run `pod install` in the `example/ios` directory to update the dependencies in `Podfile.lock` file.
 5. _Review Readme_: Review the `README.md` file to ensure that the installation instructions are up to date with the new version.
 6. _Commit and Push_: Commit the changes and push the release branch to the remote repository.
-7. _Build Library_: Build the library using the command `yarn build` to generate the necessary files for deployment.
+7. _Build Library_: Build the library using the command `yarn prepare` to generate the necessary files for deployment.
 
 _The following steps may vary depending on your local environment:_
 

@@ -3,14 +3,14 @@ PODS:
   - DoubleConversion (1.1.6)
   - fast_float (6.1.4)
   - FBLazyVector (0.79.7)
-  - Flyreel (1.1.10):
+  - Flyreel (1.1.10-hotfix.1):
     - FlyreelCamera (= 0.0.7)
     - FlyreelFNOL (= 0.0.2)
-    - FlyreelMeshScan (= 0.0.1)
+    - FlyreelMeshScan (= 0.0.3)
     - FlyreelPanorama (= 0.0.6)
-  - flyreel-sdk-react-native (0.0.19):
+  - flyreel-sdk-react-native (0.0.20):
     - DoubleConversion
-    - Flyreel (= 1.1.10)
+    - Flyreel (= 1.1.10-hotfix.1)
     - glog
     - hermes-engine
     - RCT-Folly (= 2024.11.18.00)
@@ -35,7 +35,7 @@ PODS:
     - Yoga
   - FlyreelCamera (0.0.7)
   - FlyreelFNOL (0.0.2)
-  - FlyreelMeshScan (0.0.1)
+  - FlyreelMeshScan (0.0.3)
   - FlyreelPanorama (0.0.6)
   - fmt (11.0.2)
   - glog (0.3.5)
@@ -1930,11 +1930,11 @@ SPEC CHECKSUMS:
   DoubleConversion: cb417026b2400c8f53ae97020b2be961b59470cb
   fast_float: 06eeec4fe712a76acc9376682e4808b05ce978b6
   FBLazyVector: b60fe06f0f15b7d7408f169442176e69e8eeacde
-  Flyreel: d360675e8f6432f254f8a8d78928b9c8cd197fae
-  flyreel-sdk-react-native: 6e232245c31a9c3ced30146ea53383807bbc8585
+  Flyreel: 9b7ee8e2a50f6faa2ddefc3ed63d33921f7c5ecd
+  flyreel-sdk-react-native: fd67222694632fa71c9dc4d67658405851c9a627
   FlyreelCamera: 85c8f0dc58f490794f028d02363e2bd08bf4680b
   FlyreelFNOL: 7a94e1a7b8f661ebcd6813420dd5530b01d263f1
-  FlyreelMeshScan: a7ac8f83d0a36e849a6ba726453f4df5e2b67516
+  FlyreelMeshScan: b5cd3a1f7b2b1254448cdb3d61e8af9297b4d65a
   FlyreelPanorama: f56ee51accd7588f6ee5ee77a50133f1e87486c1
   fmt: a40bb5bd0294ea969aaaba240a927bd33d878cdd
   glog: 5683914934d5b6e4240e497e0f4a3b42d1854183

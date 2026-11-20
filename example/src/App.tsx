@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 
-import Snackbar from 'react-native-snackbar';
+import { Snackbar } from 'react-native-snackbar';
 import { Flyreel, FlyreelEnvironment } from '@flyreel/flyreel-sdk-react-native';
 
 export default function App() {

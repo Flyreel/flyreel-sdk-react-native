@@ -16,6 +16,7 @@ import com.lexisnexis.risk.flyreel.FlyreelAnalyticUser
 import com.lexisnexis.risk.flyreel.FlyreelConfiguration
 import com.lexisnexis.risk.flyreel.FlyreelCoordination
 import com.lexisnexis.risk.flyreel.FlyreelDeviceData
+import com.lexisnexis.risk.flyreel.FlyreelDiagnosticEvent
 import com.lexisnexis.risk.flyreel.FlyreelEnvironment
 import com.lexisnexis.risk.flyreel.FlyreelInternalApi
 import com.lexisnexis.risk.flyreel.FlyreelMessageDetails
@@ -104,6 +105,18 @@ class FlyreelSdkReactNativeModule(private val reactContext: ReactApplicationCont
   }
 
   @OptIn(FlyreelInternalApi::class)
+  @ReactMethod
+  fun addDiagnosticEventListener(promise: Promise) {
+    // The SDK keeps one subscriber and can emit during background sync, after the JS instance is gone.
+    Flyreel.observeDiagnosticEvents { event ->
+      if (reactContext.hasActiveReactInstance()) {
+        reactContext.emitDeviceEvent("FlyreelDiagnosticEvent", event.toMap())
+      }
+    }
+    promise.resolve(null)
+  }
+
+  @OptIn(FlyreelInternalApi::class)
   private fun mapEnvironment(environment: String) =
     when (environment) {
       "production" -> FlyreelEnvironment.Production
@@ -185,4 +198,25 @@ internal fun FlyreelMessageDetails.toMap(): WritableMap {
     "moduleKey" to moduleKey,
     "messageKey" to messageKey
   )
+}
+
+// Flat shape from the SDK's diagnostic events spec: envelope fields plus attributes.
+@OptIn(FlyreelInternalApi::class)
+internal fun FlyreelDiagnosticEvent.toMap(): WritableMap {
+  val map = Arguments.createMap()
+  for ((key, value) in attributes) {
+    when (value) {
+      is Boolean -> map.putBoolean(key, value)
+      is Int -> map.putInt(key, value)
+      is Long -> map.putDouble(key, value.toDouble())
+      is Double -> map.putDouble(key, value)
+      // Never throw here: this runs inside an SDK callback on the main thread.
+      else -> map.putString(key, value.toString())
+    }
+  }
+  map.putString("eventId", eventId)
+  map.putString("name", name)
+  map.putDouble("timestamp", timestamp.toDouble())
+  map.putString("level", level.value)
+  return map
 }

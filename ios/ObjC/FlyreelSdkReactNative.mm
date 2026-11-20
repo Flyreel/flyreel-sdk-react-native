@@ -33,6 +33,9 @@ RCT_EXTERN_METHOD(enableLogs:(RCTPromiseResolveBlock)resolve
 RCT_EXTERN_METHOD(addFlyreelEventListener:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 
+RCT_EXTERN_METHOD(addDiagnosticEventListener:(RCTPromiseResolveBlock)resolve
+                  reject:(RCTPromiseRejectBlock)reject)
+
 + (BOOL)requiresMainQueueSetup
 {
   return YES;

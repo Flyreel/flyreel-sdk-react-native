@@ -30,6 +30,11 @@ DerivedData
 project.xcworkspace
 **/.xcode.env.local
 
+# Swift Package Manager (Xcode/SourceKit-LSP resolve ios/Package.swift locally)
+.build/
+.swiftpm/
+/ios/Package.resolved
+
 
 # Android/IJ
 #

@@ -18,7 +18,23 @@ interface FlyreelSDK {
   checkStatus(zipCode: String, accessCode: String): Promise<FlyreelCheckStatus>;
   enableLogs(): Promise<void>;
   observeFlyreelEvents(callback: (data: Map<String, any>) => void): () => void;
+  observeDiagnosticEvents(
+    callback: (event: FlyreelDiagnosticEvent) => void
+  ): () => void;
 }
+
+/**
+ * Internal: a structured media-pipeline diagnostic from the native SDK (SQUID-1941).
+ * Attributes such as `flyreelId`, `mediaId` and `reason` are flattened alongside the envelope.
+ */
+export type FlyreelDiagnosticEvent = {
+  eventId: string;
+  name: string;
+  // Milliseconds since the epoch
+  timestamp: number;
+  level: 'info' | 'warning' | 'error';
+  [attribute: string]: string | number | boolean;
+};
 
 // Define the FlyreelEnvironment enum
 export enum FlyreelEnvironment {
@@ -54,6 +70,7 @@ const FlyreelModule = NativeModules.Flyreel
 
 const eventEmitter = new NativeEventEmitter<{
   FlyreelEvent: [Map<String, any>];
+  FlyreelDiagnosticEvent: [FlyreelDiagnosticEvent];
 }>(NativeModules.Flyreel);
 
 export const Flyreel: FlyreelSDK = {
@@ -78,6 +95,18 @@ export const Flyreel: FlyreelSDK = {
     const subscription = eventEmitter.addListener('FlyreelEvent', callback);
 
     // Return a function to remove the listener
+    return () => subscription.remove();
+  },
+
+  // Subscribe before opening Flyreel (ideally at app start): the SDK doesn't replay missed events.
+  observeDiagnosticEvents(callback: (event: FlyreelDiagnosticEvent) => void) {
+    // Listen first so iOS forwards events emitted as soon as the native subscription starts.
+    const subscription = eventEmitter.addListener(
+      'FlyreelDiagnosticEvent',
+      callback
+    );
+    FlyreelModule.addDiagnosticEventListener();
+
     return () => subscription.remove();
   },
 

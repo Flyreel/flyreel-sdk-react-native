@@ -168,5 +168,8 @@
     "type": "legacy-module",
     "languages": "kotlin-swift",
     "version": "0.45.5"
+  },
+  "swiftpmConfig": {
+    "name": "FlyreelSdkReactNative"
   }
 }

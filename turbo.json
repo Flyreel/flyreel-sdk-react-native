@@ -1,19 +1,22 @@
 {
   "$schema": "https://turbo.build/schema.json",
-  "pipeline": {
+  "envMode": "loose",
+  "tasks": {
     "build:android": {
-    "env": ["ORG_GRADLE_PROJECT_newArchEnabled"],
+      "env": ["ORG_GRADLE_PROJECT_newArchEnabled"],
       "inputs": [
         "package.json",
-        "android",
-        "!android/build",
-        "src/*.ts",
-        "src/*.tsx",
-        "example/package.json",
-        "example/android",
-        "!example/android/.gradle",
-        "!example/android/build",
-        "!example/android/app/build"
+        "src/**",
+        "android/**",
+        "!android/.gradle/**",
+        "!android/build/**",
+        "!android/app/build/**",
+        "!android/app/.cxx/**",
+        "$TURBO_ROOT$/package.json",
+        "$TURBO_ROOT$/src/**",
+        "$TURBO_ROOT$/android/**",
+        "!$TURBO_ROOT$/android/build/**",
+        "!$TURBO_ROOT$/android/.gradle/**"
       ],
       "outputs": []
     },
@@ -21,14 +24,15 @@
       "env": ["RCT_NEW_ARCH_ENABLED"],
       "inputs": [
         "package.json",
-        "*.podspec",
-        "ios",
-        "src/*.ts",
-        "src/*.tsx",
-        "example/package.json",
-        "example/ios",
-        "!example/ios/build",
-        "!example/ios/Pods"
+        "src/**",
+        "ios/**",
+        "!ios/build/**",
+        "!ios/Pods/**",
+        "$TURBO_ROOT$/package.json",
+        "$TURBO_ROOT$/*.podspec",
+        "$TURBO_ROOT$/src/**",
+        "$TURBO_ROOT$/ios/**",
+        "!$TURBO_ROOT$/ios/.build/**"
       ],
       "outputs": []
     }

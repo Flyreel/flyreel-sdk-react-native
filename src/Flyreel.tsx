@@ -52,7 +52,9 @@ const FlyreelModule = NativeModules.Flyreel
       }
     );
 
-const eventEmitter = new NativeEventEmitter(NativeModules.Flyreel);
+const eventEmitter = new NativeEventEmitter<{
+  FlyreelEvent: [Map<String, any>];
+}>(NativeModules.Flyreel);
 
 export const Flyreel: FlyreelSDK = {
   initialize(

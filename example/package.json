@@ -12,23 +12,24 @@
     "build:ios": "react-native build-ios --scheme FlyreelSdkReactNativeExample --mode Debug --extra-params \"-sdk iphonesimulator CC=clang CPLUSPLUS=clang++ LD=clang LDPLUSPLUS=clang++ GCC_OPTIMIZATION_LEVEL=0 GCC_PRECOMPILE_PREFIX_HEADER=YES ASSETCATALOG_COMPILER_OPTIMIZATION=time DEBUG_INFORMATION_FORMAT=dwarf COMPILER_INDEX_STORE_ENABLE=NO\""
   },
   "dependencies": {
-    "react": "19.0.0",
-    "react-native": "0.79.7",
-    "react-native-snackbar": "^2.9.0"
+    "react": "19.3.0",
+    "react-native": "0.88.1",
+    "react-native-snackbar": "^3.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
     "@babel/preset-env": "^7.25.3",
     "@babel/runtime": "^7.25.0",
-    "@react-native-community/cli": "18.0.1",
-    "@react-native-community/cli-platform-android": "16.0.0",
-    "@react-native-community/cli-platform-ios": "16.0.0",
-    "@react-native/babel-preset": "0.79.7",
-    "@react-native/metro-config": "0.79.7",
-    "@react-native/typescript-config": "0.79.7",
+    "@react-native-community/cli": "20.2.0",
+    "@react-native-community/cli-platform-android": "20.2.0",
+    "@react-native-community/cli-platform-ios": "20.2.0",
+    "@react-native/babel-preset": "0.88.1",
+    "@react-native/jest-preset": "0.88.1",
+    "@react-native/metro-config": "0.88.1",
+    "@react-native/typescript-config": "0.88.1",
     "react-native-builder-bob": "^0.40.18"
   },
   "engines": {
-    "node": ">=18"
+    "node": ">= 22.11.0"
   }
 }

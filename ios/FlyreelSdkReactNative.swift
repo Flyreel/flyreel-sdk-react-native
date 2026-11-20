@@ -21,7 +21,10 @@ class FlyreelSdkReactNative: RCTEventEmitter {
     _ resolve: RCTPromiseResolveBlock,
     rejecter reject: RCTPromiseRejectBlock
   ) {
-    let rootView = UIApplication.shared.delegate!.window!!.rootViewController!
+    guard let rootView = rootViewController() else {
+      reject("no_root_view_controller", "Unable to find a root view controller", nil)
+      return
+    }
     FlyreelSDK.shared.presentFlyreel(on: rootView)
     resolve(nil)
   }
@@ -33,7 +36,10 @@ class FlyreelSdkReactNative: RCTEventEmitter {
     rejecter reject: RCTPromiseRejectBlock
   ) {
 
-    let rootView = UIApplication.shared.delegate!.window!!.rootViewController!
+    guard let rootView = rootViewController() else {
+      reject("no_root_view_controller", "Unable to find a root view controller", nil)
+      return
+    }
     if let deeplinkURL = URL(string: deeplink ?? "") {
       FlyreelSDK.shared.presentFlyreel(
         on: rootView, deepLinkURL: deeplinkURL,
@@ -50,7 +56,10 @@ class FlyreelSdkReactNative: RCTEventEmitter {
     resolve: RCTPromiseResolveBlock,
     rejecter reject: RCTPromiseRejectBlock
   ) {
-    let rootView = UIApplication.shared.delegate!.window!!.rootViewController!
+    guard let rootView = rootViewController() else {
+      reject("no_root_view_controller", "Unable to find a root view controller", nil)
+      return
+    }
     FlyreelSDK.shared.presentFlyreel(
       on: rootView, zipCode: zipCode, accessCode: accessCode,
       shouldSkipLoginPage: shouldSkipLoginPage)
@@ -90,6 +99,14 @@ class FlyreelSdkReactNative: RCTEventEmitter {
   ) {
     FlyreelSDK.shared.enableLogs()
     resolve(nil)
+  }
+
+  // Works for both scene-based (RN 0.88+ template) and legacy AppDelegate-window apps.
+  private func rootViewController() -> UIViewController? {
+    let windows = UIApplication.shared.connectedScenes
+      .compactMap { $0 as? UIWindowScene }
+      .flatMap { $0.windows }
+    return (windows.first { $0.isKeyWindow } ?? windows.first)?.rootViewController
   }
 
   func mapEnvironment(environment: String) -> FlyreelEnvironment {

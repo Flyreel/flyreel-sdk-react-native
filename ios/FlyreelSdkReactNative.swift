@@ -127,7 +127,26 @@ public class FlyreelSdkReactNative: RCTEventEmitter {
 
   // Supported events
   public override func supportedEvents() -> [String] {
-    return ["FlyreelEvent", "onClose"]
+    return ["FlyreelEvent", "FlyreelDiagnosticEvent", "onClose"]
+  }
+
+  private var hasListeners = false
+
+  public override func startObserving() { hasListeners = true }
+
+  public override func stopObserving() { hasListeners = false }
+
+  @objc(addDiagnosticEventListener:reject:)
+  func addDiagnosticEventListener(
+    _ resolve: RCTPromiseResolveBlock,
+    rejecter reject: RCTPromiseRejectBlock
+  ) {
+    // The SDK keeps one subscriber and outlives this module across JS reloads.
+    FlyreelSDK.shared.observeDiagnosticEvents { [weak self] event in
+      guard let self, self.hasListeners else { return }
+      self.sendEvent(withName: "FlyreelDiagnosticEvent", body: event.toBridgeMap())
+    }
+    resolve(nil)
   }
 
   @objc(addFlyreelEventListener:reject:)
@@ -143,6 +162,18 @@ public class FlyreelSdkReactNative: RCTEventEmitter {
   }
 
 }
+extension FlyreelDiagnosticEvent {
+  // Flat shape from the SDK's diagnostic events spec: envelope fields plus attributes.
+  func toBridgeMap() -> [String: Any] {
+    var map = attributes
+    map["eventId"] = eventId
+    map["name"] = name
+    map["timestamp"] = timestamp.timeIntervalSince1970 * 1000
+    map["level"] = level.rawValue
+    return map
+  }
+}
+
 extension FlyreelEvent {
   func toFlutterMap() -> [String: Any?] {
     return [

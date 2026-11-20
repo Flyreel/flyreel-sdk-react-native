@@ -11,6 +11,9 @@ export default function App() {
     Flyreel.observeFlyreelEvents((event: Map<String, any>) => {
       console.log('Received Flyreel event:', event);
     });
+    Flyreel.observeDiagnosticEvents((event) => {
+      console.log(`[DIAG] ${event.level} ${event.name}`, event);
+    });
   }, []);
 
   return (

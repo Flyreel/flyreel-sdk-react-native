@@ -1,7 +1,10 @@
+import React
+import UIKit
 @_spi(FlyreelInternal) import Flyreel
 
+// Public so the ObjC target's RCT_EXTERN_REMAP_MODULE can link to it under SwiftPM.
 @objc(FlyreelSdkReactNative)
-class FlyreelSdkReactNative: RCTEventEmitter {
+public class FlyreelSdkReactNative: RCTEventEmitter {
 
   @objc(initialize:environment:resolve:reject:)
   func initialize(
@@ -123,7 +126,7 @@ class FlyreelSdkReactNative: RCTEventEmitter {
   }
 
   // Supported events
-  override func supportedEvents() -> [String] {
+  public override func supportedEvents() -> [String] {
     return ["FlyreelEvent", "onClose"]
   }
 

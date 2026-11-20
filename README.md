@@ -13,7 +13,9 @@
 
 ### iOS
 
-- iOS 13+
+- iOS 15.1+
+- React Native 0.75+
+- Xcode 27.2+ (the Flyreel iOS SDK is built with Swift 6.4)
 
 ## Installation
 
@@ -23,7 +25,24 @@ $ npm install --save @flyreel/flyreel-sdk-react-native
 $ yarn add @flyreel/flyreel-sdk-react-native
 ```
 
-_Don't forget to run `pod install` after that !_
+### iOS
+
+The Flyreel iOS SDK is distributed through Swift Package Manager only. How you set it up depends
+on how your app builds React Native.
+
+#### CocoaPods (default)
+
+1. Run `pod install`. It adds the Flyreel Swift package to the Pods project.
+2. The Flyreel SDK ships dynamic frameworks that CocoaPods doesn't embed. Add the package to your
+   app target too: in Xcode, open **File > Add Package Dependencies…**, enter
+   `https://github.com/Flyreel/flyreel-sdk-ios`, choose **Exact Version** `1.2.3`, and add the
+   `Flyreel` product to your app target. Skipping this step makes the app crash at launch with
+   `Library not loaded: @rpath/Flyreel.framework`.
+
+#### Swift Package Manager (`npx react-native spm`)
+
+No extra steps. The library ships its own `ios/Package.swift`, which React Native's SwiftPM
+autolinking picks up.
 
 ## Usage
 
@@ -38,7 +57,7 @@ permission settings in your Info.plist file.
     <key>NSCameraUsageDescription</key>
     <string>We need access to the camera.</string>
     <key>NSMicrophoneUsageDescription</key>
-    <string>We need access to the camera.</string>
+    <string>We need access to the microphone.</string>
     <key>NSLocationWhenInUseUsageDescription</key>
     <string>We need access to your location data</string>
 </dict>

@@ -4,7 +4,9 @@ package = JSON.parse(File.read(File.join(__dir__, "package.json")))
 folly_compiler_flags = '-DFOLLY_NO_CONFIG -DFOLLY_MOBILE=1 -DFOLLY_USE_LIBCPP=1 -Wno-comma -Wno-shorten-64-to-32'
 
 Pod::Spec.new do |s|
-  s.name         = "flyreel-sdk-react-native"
+  # Underscored so the pod name matches its module name; RN 0.87/0.88's spm_dependency
+  # rewrites module map paths using the pod name (fixed in 0.89, react/react-native#59182).
+  s.name         = "flyreel_sdk_react_native"
   s.version      = package["version"]
   s.summary      = package["description"]
   s.homepage     = package["homepage"]
@@ -15,7 +17,19 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/Flyreel/flyreel-sdk-react-native.git", :tag => "#{s.version}" }
 
   s.source_files = "ios/**/*.{h,m,mm,swift}"
-  s.dependency 'Flyreel', '1.2.2'
+  # Manifest for React Native's SwiftPM mode, not a source file
+  s.exclude_files = "ios/Package.swift"
+
+  # Flyreel iOS SDK 1.2.3+ is distributed via Swift Package Manager only (not on CocoaPods trunk).
+  # Keep in step with ios/Package.swift.
+  unless respond_to?(:spm_dependency, true)
+    raise "flyreel-sdk-react-native requires React Native 0.75+ (spm_dependency) to resolve the Flyreel iOS SDK via Swift Package Manager."
+  end
+  spm_dependency(s,
+    url: 'https://github.com/Flyreel/flyreel-sdk-ios.git',
+    requirement: { kind: 'exactVersion', version: '1.2.3' },
+    products: ['Flyreel']
+  )
 
   # Use install_modules_dependencies helper to install the dependencies if React Native version >=0.71.0.
   # See https://github.com/facebook/react-native/blob/febf6b7f33fdb4904669f99d795eba4c0f95d7bf/scripts/cocoapods/new_architecture.rb#L79.

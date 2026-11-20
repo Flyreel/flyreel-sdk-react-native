@@ -1,0 +1,24 @@
+{
+  "originHash" : "ebfb920d7786529d4ce414c9ef0b416f22a351ad59eb195bcc0740f584ac6d9e",
+  "pins" : [
+    {
+      "identity" : "flyreel-camera-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Flyreel/flyreel-camera-ios",
+      "state" : {
+        "revision" : "3bc78293e7085bd69058ebe69e2579f8ab75de69",
+        "version" : "0.0.9"
+      }
+    },
+    {
+      "identity" : "flyreel-sdk-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Flyreel/flyreel-sdk-ios.git",
+      "state" : {
+        "revision" : "6b02adeebf1cf800a47510880084021cbaab4239",
+        "version" : "1.2.3"
+      }
+    }
+  ],
+  "version" : 3
+}

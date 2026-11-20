@@ -7,12 +7,12 @@
 
 ## Requirements
 
-| | Minimum |
-|---|---|
-| React Native | 0.75 (tested on 0.88) |
-| Android | minSdk 23, Kotlin 2.1+ |
-| iOS | 15.1 |
-| Xcode | 27.2 (the Flyreel iOS SDK is built with Swift 6.4) |
+|              | Minimum                                            |
+| ------------ | -------------------------------------------------- |
+| React Native | 0.75 (tested on 0.88)                              |
+| Android      | minSdk 23, Kotlin 2.1+                             |
+| iOS          | 15.1                                               |
+| Xcode        | 27.2 (the Flyreel iOS SDK is built with Swift 6.4) |
 
 The wrapper ships the native Flyreel SDKs **1.2.3** for both platforms.
 
@@ -176,11 +176,11 @@ await Flyreel.initialize('5d3633f9103a930011996475', FlyreelEnvironment.SANDBOX)
 
 The SDK has three tools for visibility. They're independent; use any combination.
 
-| Tool | Use it for | Reaches JS? |
-|---|---|---|
-| `enableLogs()` | Debugging on a device connected to Xcode or Android Studio | No |
-| `observeFlyreelEvents()` | Product analytics: login, questions, completion, close | Yes |
-| `observeDiagnosticEvents()` | Production visibility into media capture, uploads, sync and submit | Yes |
+| Tool                        | Use it for                                                         | Reaches JS? |
+| --------------------------- | ------------------------------------------------------------------ | ----------- |
+| `enableLogs()`              | Debugging on a device connected to Xcode or Android Studio         | No          |
+| `observeFlyreelEvents()`    | Product analytics: login, questions, completion, close             | Yes         |
+| `observeDiagnosticEvents()` | Production visibility into media capture, uploads, sync and submit | Yes         |
 
 Each `observe…` call returns a function that removes the listener. Subscribe once (for example
 at app start, after `initialize`) rather than inside a component that re-renders. Each call adds
@@ -217,15 +217,15 @@ const unsubscribe = Flyreel.observeFlyreelEvents((event: any) => {
 Each event is a plain object (the callback's TypeScript type says `Map<String, any>`, but the value
 isn't a `Map`):
 
-| Field | Type | Notes |
-|---|---|---|
-| `name` | string | `user_logged_in`, `question_asked`, `question_answered`, `flyreel_completed` or `sdk_closed` |
-| `timestamp` | string | ISO 8601 |
-| `user` | object | `id`, `botId`, `botName`, `organizationId`, `status`; Android also has `loginType` (`manual_login` \| `deeplink_login`) |
-| `activeTime` | number? | **iOS: seconds, Android: milliseconds.** Absent on `user_logged_in`. |
-| `coordination` | object? | `{ lat, lng }`, on `user_logged_in` and `question_answered` |
-| `deviceData` | object? | `phoneModel`, `appVersion`, `appName` (Android also `phoneManufacturer`), on `user_logged_in` |
-| `messageDetails` | object? | `message`, `messageType`, `moduleKey`, `messageKey` (iOS also `phase`), on `question_asked` and `question_answered` |
+| Field            | Type    | Notes                                                                                                                   |
+| ---------------- | ------- | ----------------------------------------------------------------------------------------------------------------------- |
+| `name`           | string  | `user_logged_in`, `question_asked`, `question_answered`, `flyreel_completed` or `sdk_closed`                            |
+| `timestamp`      | string  | ISO 8601                                                                                                                |
+| `user`           | object  | `id`, `botId`, `botName`, `organizationId`, `status`; Android also has `loginType` (`manual_login` \| `deeplink_login`) |
+| `activeTime`     | number? | **iOS: seconds, Android: milliseconds.** Absent on `user_logged_in`.                                                    |
+| `coordination`   | object? | `{ lat, lng }`, on `user_logged_in` and `question_answered`                                                             |
+| `deviceData`     | object? | `phoneModel`, `appVersion`, `appName` (Android also `phoneManufacturer`), on `user_logged_in`                           |
+| `messageDetails` | object? | `message`, `messageType`, `moduleKey`, `messageKey` (iOS also `phase`), on `question_asked` and `question_answered`     |
 
 ### Diagnostic events (internal)
 
@@ -255,54 +255,54 @@ flow. Nothing is persisted by the SDK, so persist on your side if needed.
 
 Each event is a flat object: the envelope fields plus the event's attributes.
 
-| Field | Type | Notes |
-|---|---|---|
-| `eventId` | string | UUID. Use it as the de-duplication key or document ID. |
-| `name` | string | See the catalog below. |
-| `timestamp` | number | Milliseconds since the epoch. |
-| `level` | `'info' \| 'warning' \| 'error'` | |
-| `schemaVersion` | number | Bumped on breaking changes to names or attributes. |
-| `platform` | string | `ios` or `android` |
-| `sdkVersion` | string | Native Flyreel SDK version |
-| `flyreelId` | string | Present on every catalog event; groups everything for one inspection. |
+| Field           | Type                             | Notes                                                                 |
+| --------------- | -------------------------------- | --------------------------------------------------------------------- |
+| `eventId`       | string                           | UUID. Use it as the de-duplication key or document ID.                |
+| `name`          | string                           | See the catalog below.                                                |
+| `timestamp`     | number                           | Milliseconds since the epoch.                                         |
+| `level`         | `'info' \| 'warning' \| 'error'` |                                                                       |
+| `schemaVersion` | number                           | Bumped on breaking changes to names or attributes.                    |
+| `platform`      | string                           | `ios` or `android`                                                    |
+| `sdkVersion`    | string                           | Native Flyreel SDK version                                            |
+| `flyreelId`     | string                           | Present on every catalog event; groups everything for one inspection. |
 
 Attribute values are strings, numbers or booleans. Optional attributes are omitted when unknown.
 Events never contain URLs, tokens, user-entered text, coordinates or addresses.
 
 **Correlation IDs**
 
-| Attribute | Meaning |
-|---|---|
-| `answerId` | `<messageId>:<moduleId>:<iterationId>` for one answer |
-| `mediaId` | The captured file's name. Stable across retries and relaunches. |
-| `attemptId` | One upload attempt. A new ID per attempt, live or sync. |
+| Attribute           | Meaning                                                                            |
+| ------------------- | ---------------------------------------------------------------------------------- |
+| `answerId`          | `<messageId>:<moduleId>:<iterationId>` for one answer                              |
+| `mediaId`           | The captured file's name. Stable across retries and relaunches.                    |
+| `attemptId`         | One upload attempt. A new ID per attempt, live or sync.                            |
 | `uploadSessionTail` | `…` plus the last 6 characters of the upload session ID, for matching backend logs |
-| `origin` | `live` (right after capture) or `sync` (background or final sync) |
+| `origin`            | `live` (right after capture) or `sync` (background or final sync)                  |
 
 Group an item's attempts by `mediaId`, join uploads to answers with `answerId`, and group a whole
 inspection by `flyreelId`.
 
 **Event catalog**
 
-| Event | Level | When |
-|---|---|---|
-| `media_keep_failed` | error | The capture couldn't be saved locally. |
-| `media_upload_queued` | info | A live upload joins the queue. |
-| `media_upload_started` | info | An upload attempt (or bundle part) begins. |
-| `media_upload_resumed` | info | An attempt continues a saved upload session. |
-| `media_upload_retrying` | warning | A transient failure; the SDK backs off and retries. |
-| `media_upload_succeeded` | info | The attempt finished. |
-| `media_upload_failed` | error | The attempt gave up. |
-| `media_upload_cancelled` | warning | The attempt was cancelled (re-answer, edit, chat closed, sync timeout). |
-| `media_cached_for_sync` | warning | A live upload didn't finish; the answer is cached for sync to retry. |
-| `answer_submit_deferred` | info | A media answer is cached for sync because its media is still uploading. |
-| `answer_submit_started` | info | A media answer is posted. |
-| `answer_submit_succeeded` | info | The post succeeded. |
-| `answer_submit_failed` | warning | The post failed; the answer stays cached for sync. |
-| `sync_pass_started` | info | A sync pass with cached answers begins. |
-| `media_answer_skipped` | error | Sync dropped an answer because its media file is gone. **That media is lost.** |
-| `sync_pass_finished` | info / warning | A sync pass ends (`result`: `ok`, `partial` or `failed`). |
-| `flyreel_submit_summary` | info / error | The final submit ran. `mediaStillLocal > 0` means media was lost. |
+| Event                     | Level          | When                                                                           |
+| ------------------------- | -------------- | ------------------------------------------------------------------------------ |
+| `media_keep_failed`       | error          | The capture couldn't be saved locally.                                         |
+| `media_upload_queued`     | info           | A live upload joins the queue.                                                 |
+| `media_upload_started`    | info           | An upload attempt (or bundle part) begins.                                     |
+| `media_upload_resumed`    | info           | An attempt continues a saved upload session.                                   |
+| `media_upload_retrying`   | warning        | A transient failure; the SDK backs off and retries.                            |
+| `media_upload_succeeded`  | info           | The attempt finished.                                                          |
+| `media_upload_failed`     | error          | The attempt gave up.                                                           |
+| `media_upload_cancelled`  | warning        | The attempt was cancelled (re-answer, edit, chat closed, sync timeout).        |
+| `media_cached_for_sync`   | warning        | A live upload didn't finish; the answer is cached for sync to retry.           |
+| `answer_submit_deferred`  | info           | A media answer is cached for sync because its media is still uploading.        |
+| `answer_submit_started`   | info           | A media answer is posted.                                                      |
+| `answer_submit_succeeded` | info           | The post succeeded.                                                            |
+| `answer_submit_failed`    | warning        | The post failed; the answer stays cached for sync.                             |
+| `sync_pass_started`       | info           | A sync pass with cached answers begins.                                        |
+| `media_answer_skipped`    | error          | Sync dropped an answer because its media file is gone. **That media is lost.** |
+| `sync_pass_finished`      | info / warning | A sync pass ends (`result`: `ok`, `partial` or `failed`).                      |
+| `flyreel_submit_summary`  | info / error   | The final submit ran. `mediaStillLocal > 0` means media was lost.              |
 
 Failures carry `reason` and, when known, `httpStatus` and `errorCode` (an iOS `URLError` code or
 an Android exception class name). `reason` is one of `offline`, `connection_lost`, `timeout`,
@@ -311,6 +311,7 @@ an Android exception class name). `reason` is one of `offline`, `connection_lost
 `empty_file`, `keep_failed`, `media_pending`, `cancelled` or `unknown`.
 
 Events worth alerting on:
+
 - `media_answer_skipped`
 - `media_keep_failed`
 - `flyreel_submit_summary` with `mediaStillLocal > 0` or `unsyncedAnswers > 0`

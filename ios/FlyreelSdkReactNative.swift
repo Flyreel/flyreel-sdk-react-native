@@ -1,6 +1,6 @@
+@_spi(FlyreelInternal) import Flyreel
 import React
 import UIKit
-@_spi(FlyreelInternal) import Flyreel
 
 // Public so the ObjC target's RCT_EXTERN_REMAP_MODULE can link to it under SwiftPM.
 @objc(FlyreelSdkReactNative)
@@ -190,9 +190,9 @@ extension FlyreelEvent {
   private func activeTimeFromTrigger() -> TimeInterval? {
     switch trigger {
     case .questionAsked(let activeTime, _),
-        .questionAnswered(let activeTime, _, _),
-        .flyreelCompleted(let activeTime),
-        .sdkClosed(let activeTime):
+      .questionAnswered(let activeTime, _, _),
+      .flyreelCompleted(let activeTime),
+      .sdkClosed(let activeTime):
       return activeTime
     case .userLoggedIn:
       return nil

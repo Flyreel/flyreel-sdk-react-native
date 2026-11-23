@@ -15,7 +15,7 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Flyreel/flyreel-sdk-ios.git",
       "state" : {
-        "revision" : "6b02adeebf1cf800a47510880084021cbaab4239",
+        "revision" : "5904440930cc94c1ea2dadb1cba8fc602dfef0e9",
         "version" : "1.2.3"
       }
     }
